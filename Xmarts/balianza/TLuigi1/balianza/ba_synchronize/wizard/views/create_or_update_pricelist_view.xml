@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <record id="update_pricelist_item_view" model="ir.ui.view">
+            <field name="name">update.pricelist.item.view</field>
+            <field name="model">update.pricelist.item</field>
+            <field name="arch" type="xml">
+                <form string="Actualizar precio de producto en listas de precios">
+                    <group>
+                        <field name="name" string="Motivo cambio de precio" />
+                    </group>
+                    <group>
+                        <group>
+                            <field name="currency_id" readonly="1" />
+                            <field name="product_id" />
+                        </group>
+                        <group>
+                            <field name="price_unidad" />
+                            <field name="percent_discount" attrs="{'readonly': [('price_unidad', '=', 0)]}"/>
+                            <field name="price_sub_unidad" readonly="1" force_save="1" />
+                        </group>
+                    </group>
+                        <seperator string='Listas de precios'/>
+                        <field name="pricelist_ids" >
+                            <tree editable="buttom" create="false" decoration-success="diference_price_limit=='right'" decoration-danger="diference_price_limit=='alert'"  decoration-warning = "diference_price_limit=='equal'">
+                                <field name="pricelist_id" string="Lista de precios" invisible="1"/>
+                                <field name="pricelist_id_name" string="Lista de precios" />
+                                <field name="pricelist_id_code" string="Codigo" />
+                                <field name="price_old" readonly="1"/>
+                                <field name="discount_old" readonly="1"/>
+                                <field name="price_sub_unidad_old" readonly="1" />
+                                <field name="diference_price_limit" invisible="1" />
+                                <field name="alert_message" />
+                            </tree>
+                        </field>
+                    <footer>
+                        <button string="Procesar" name="process_update_pricelist" type="object" default_focus="1" class="oe_highlight"/>
+                        o
+                        <button string="Cancelar" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record id="action_create_or_update_product_pricelist" model="ir.actions.act_window">
+            <field name="name">Actualizar precio de producto</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">update.pricelist.item</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="update_pricelist_item_view"/>
+            <field name="context">{}</field>
+            <field name="target">new</field>
+            <field name="help">Este wizard permitirá al usuario modificar el precio de un producto en una o multiples listas de precios.</field>
+            <field name="binding_model_id" ref="product.model_product_pricelist" />
+            <field name="binding_view_types">list</field>
+        </record>
+</odoo>

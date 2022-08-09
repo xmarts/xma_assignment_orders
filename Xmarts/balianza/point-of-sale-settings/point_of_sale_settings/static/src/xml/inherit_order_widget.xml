@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="OrderWidget" t-inherit="point_of_sale.OrderWidget" t-inherit-mode="extension" owl="1">
+        <xpath expr="//div[@class='order']" position="inside">
+            <br/><br/>
+            <t t-if="_getSelectedLine()">
+                <div class='orderline'>
+                    <h4>
+                        Inv. Disponible <t t-if="_getTypeUnitCaja and _getSelectedLine().get_count_product_x_caja() > 1"><t t-esc="_getCountInv['countCajInv']"/> <t t-esc="_getTypeUnitCaja.name"/>,</t> <t t-esc="_getCountInv['countUnidInv']"/> <t t-esc="_getTypeUnit.name"/><br/>
+                        Total: <t t-esc="_getCountInv['totalProductInv']"/> <t t-esc="_getTypeUnit.name"/>.
+                    </h4>
+                </div>
+            </t>
+        </xpath>
+    </t>
+</templates>

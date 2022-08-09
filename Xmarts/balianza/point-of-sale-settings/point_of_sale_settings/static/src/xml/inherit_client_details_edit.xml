@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+     <t t-name="ClientLine" t-inherit="point_of_sale.ClientLine" t-inherit-mode="extension" owl="1">
+        <xpath expr="//tr" position="inside">
+            <!-- <td t-if="!env.isMobile">
+                <t t-if="props.partner.customer_created_by === 'cliente_creado_pdv'">
+                    PDV
+                </t>
+                <t t-elif="props.partner.customer_created_by === 'cliente_creado_model_venta'">
+                    Ventas
+                </t>
+            </td> -->
+            <td t-if="!env.isMobile">
+                <t t-esc="props.partner.ref or ''" />
+            </td>
+            <td t-if="!env.isMobile">
+                <t t-esc="props.partner.vat or ''" />
+            </td>
+        </xpath>
+    </t>
+    <t t-name="ClientListScreen" t-inherit="point_of_sale.ClientListScreen" t-inherit-mode="extension" owl="1">
+        <xpath expr="//tr" position="inside">
+            <!-- <th>Cliente creado desde</th> -->
+            <th>Código cliente</th>
+            <th>RFC</th>
+        </xpath>
+    </t>
+
+    <t t-name="ClientDetailsEdit" t-inherit="point_of_sale.ClientDetailsEdit" t-inherit-mode="extension" owl="1">
+        <xpath expr="//div[@class='client-details-left']" position="inside">
+            <div class="client-detail">
+                <span class="label">Cliente creado desde</span>
+                <select class="detail client-customer_created_by needsclick" name="customer_created_by" t-on-change="captureChange" disabled="1">
+                    <t t-if="props.partner.name">
+                        <option value="'cliente_creado_pdv'"
+                                t-att-selected="props.partner.customer_created_by ? ((props.partner.customer_created_by === 'cliente_creado_pdv') ? true : undefined) : undefined">
+                                PDV
+                        </option>
+                        <option value="'cliente_creado_model_venta'"
+                                t-att-selected="props.partner.customer_created_by ? ((props.partner.customer_created_by === 'cliente_creado_model_venta') ? true : undefined) : undefined">
+                                Ventas
+                        </option>
+                    </t>
+                    <t t-else=''>
+                        <option value="cliente_creado_pdv"
+                                selected="1">
+                                PDV
+                        </option>
+                    </t>
+                </select>
+            </div>
+            <div class="client-detail">
+                <span class="label">Código cliente</span>
+                <input class="detail client-ref" name="ref"
+                    t-on-change="captureChange"
+                    t-att-value="props.partner.ref || ''" />
+            </div>
+        </xpath>
+<!--         <xpath expr="//div[@t-if='env.pos.pricelists.length gt 1']" position="replace">
+            <div class="client-detail">
+                <span class="label">Lista de precios</span>
+                <select class="detail needsclick" name="property_product_pricelist"
+                    t-on-change="captureChange">
+                    <option value="">
+                        Seleccione una lista de precios
+                    </option>
+                    <option t-att-value="props.partner.property_product_pricelist[0]"
+                        selected="1">
+                        <t t-esc="props.partner.property_product_pricelist[1]" />
+                    </option>
+                </select>
+            </div>
+        </xpath> -->
+    </t>
+</templates>

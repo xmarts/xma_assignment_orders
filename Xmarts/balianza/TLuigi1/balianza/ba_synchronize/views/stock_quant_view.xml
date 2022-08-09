@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_stock_quant_template_tree_gm" model="ir.ui.view" >
+        <field name="name">stock_quant.template.tree.gm</field>
+        <field name="model">stock.quant</field>
+        <field name="inherit_id" ref="stock.view_stock_quant_tree_editable" />
+        <field name="arch" type="xml">
+            <field name="product_uom_id" position="after">
+                <field name="packaging_content" />
+                <field name="packing_quantity" />
+                <field name="packing_unit_id" />
+                <field name="quantity_unit" />
+                <field name="unit_id" />
+                <field name="no_charge_cost" />
+            </field>
+            <field name="inventory_quantity" position="replace">
+                <field name="inventory_quantity" string="Cantidad en almacen" attrs="{'readonly': [('id', '!=', False)]}"/>
+            </field>
+            <field name="available_quantity" position="replace">
+                <field name="available_quantity" string="Cantidad teorica disponible"/>
+            </field>
+            <field name="location_id" position="replace">
+                <field name="location_id" string="Almacen" />
+                <field name="ubication_id"  />
+                <field name="sub_ubication_id" />
+                
+            </field>
+
+    
+        </field>
+    </record>
+
+
+
+    <record id="view_stock_quant_tree_gm" model="ir.ui.view" >
+        <field name="name">stockquant.template.tree.gm</field>
+        <field name="model">stock.quant</field>
+        <field name="inherit_id" ref="stock.view_stock_quant_tree" />
+        <field name="arch" type="xml">
+            <field name="location_id" position="replace">
+                <field name="location_id" string="Almacen" />
+                <field name="ubication_id"  />
+                <field name="sub_ubication_id" />
+            </field>
+            <field name="available_quantity" position="replace">
+                <field name="available_quantity" invisible="True" />
+            </field>
+            <field name="quantity" position="replace">
+                <field name="quantity" invisible="True"/>
+            </field>
+            <!--<field name="removal_date" position="replace">
+                <field name="removal_date" invisible="True"/>
+            </field>-->
+            <field name="product_uom_id" position="before">
+                 <field name="available_quantity" string="cantidad disponible" />
+            </field>
+
+            <!--<field name="value" position="replace">
+                <field name="value" invisible="True"/>
+            </field>--> 
+        </field>
+    </record>
+
+    <record id="stock_quant_ba" model="ir.rule">
+        <field name="name">Permiso escritura</field>
+        <field name="model_id" ref="stock.model_stock_quant"/>
+        <field name="domain_force">[]</field>
+        <field name="groups" eval="[(4, ref('base.user_admin'))]"/>
+        <field name="perm_unlink" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_create" eval="True"/>
+    </record>
+
+</odoo>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="TicketScreen" t-inherit="point_of_sale.TicketScreen" t-inherit-mode="extension" owl="1">
+        <xpath expr="//div[@class='header-row']/div[2]" position="after">
+            <div class="col start wide">Serie</div>
+        </xpath>
+        <xpath expr="//div[@class='order-row pointer']/div[2]" position="after">
+            <div class="col start wide">
+                <t t-esc="getTipoCompra(order)"></t>
+            </div>
+        </xpath>
+    </t>
+</templates>

@@ -1,0 +1,111 @@
+<odoo>
+    <data>
+      <record id="mail_template_user_surveys_alianza" model="mail.template">
+        <field name="name">Encuesta de satisfaccion delivery</field>
+        <field name="model_id" ref="survey.model_res_partner" />
+        <field name="partner_to">${object.id}</field>
+        <field name="subject">Encuesta de satisfaccion delivery</field>
+        <!-- <field name="email_to">{(object.partner_id.email_formatted or object.email)}</field> -->
+        <field name="body_html" type="html">
+        <div style="margin: 0px; padding: 0px; font-size: 13px;">
+          <p style="margin: 0px; padding: 0px; font-size: 13px;">
+            Estimado ${object.name}<br/><br/>
+            Ha sido invitado a realizar una nueva encuesta.<br/>
+            Estamos realizando una encuesta y agradeceríamos que la respondiera.
+            <div style="margin: 16px 0px 16px 0px;">
+              <a href="${ctx.url}"
+                  style="background-color: #875A7B; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;">
+                  Empezar encuesta
+              </a>
+            </div>
+            Por favor, conteste la encuesta antes del ${ctx.date_dear}
+            <!-- <a href="(ctx.get('url'))" >Encuesta aqui</a><br/> -->
+          </p>
+        </div>
+        </field>
+        <field name="lang">{ object.partner_id.lang }</field>
+        <field name="auto_delete" eval="False"/>
+    </record>
+
+    <record id= "email_template_sale_subscription_in_progress" model="mail.template">
+      <field name="name">Suscripciones - Seguro Voluntario En Proceso</field>
+      <field name="model_id" ref="survey.model_survey_user_input" />
+      <field name="partner_to">${object.id}</field>
+      <field name="auto_delete" eval="True"/>
+      <field name="subject">Seguro Voluntario En Proceso</field>
+      <field name="body_html" type="html">
+          <div style="margin: 0px; padding: 0px;">
+               <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                   Estimado ${object.name}<br/>
+               </p>
+           </div>
+       </field>           
+   </record>
+    </data>
+</odoo>
+
+<!-- Estimado ${object.partner_id.name or 'participant'}<br/><br/>
+
+  % if object.survey_id.certification: Ha sido invitado a realizar una nueva certificación.
+  % else:  % endif <br/>
+  <div style="margin: 16px 0px 16px 0px;">
+    <a t-att-href="(object.get_start_url())"
+        style="background-color: #875A7B; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;">
+        % if object.survey_id.certification: Iniciar certificación % else: Empezar encuesta % endif
+  </a>
+  </div>
+  <a href="(object.survey_start_url_rel)" >Encuesta aqui</a><br/>
+  
+  % if object.deadline: Por favor, conteste la encuesta antes del ${format_date(object.deadline)}.<br/><br/>
+  
+  % endif Gracias por su participación.  -->
+    <!-- Estimado <t t-out="object.partner_id.name or 'participant'">participante</t><br/><br/>
+    <t t-if="object.survey_id.certification">
+      Ha sido invitado a realizar una nueva encuesta.
+    </t>
+    <t t-else="">
+      Estamos realizando una encuesta y agradeceríamos que la respondiera.
+    </t>
+    <div style="margin: 16px 0px 16px 0px;">
+        <a t-att-href="(object.get_start_url())"
+            style="background-color: #875A7B; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;">
+            <t t-if="object.survey_id.certification">
+                Iniciar Certificacion
+            </t>
+            <t t-else="">
+                Iniciar Encuesta
+            </t>
+        </a>
+    </div>
+    <t t-if="object.deadline">
+      Por favor, conteste la encuesta antes del<t t-out="format_date(object.deadline) or ''">05/05/2021</t>.<br/><br/>
+    </t>
+    Gracias por su participacion. -->
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Estimado ${object.partner_id.name or 'participant'}<br/><br/>
+
+    % if object.survey_id.certification: Ha sido invitado a realizar una nueva certificación.
+    % else: Estamos realizando una encuesta y agradeceríamos que la respondiera. % endif <br/>
+    <div style="margin: 16px 0px 16px 0px;">
+      <a t-att-href="(ctx.get('url'))" t-out="ctx.get('url')"
+          style="background-color: #875A7B; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;">
+          Empezar encuesta
+        % if object.survey_id.certification: Iniciar certificación % else: Empezar encuesta 
+    </a>
+    <a t-out="ctx.get('url')"></a>
+    </div>
+    <a href="" >Encuesta aqui</a><br/> 
+    
+    % if object.deadline: Por favor, conteste la encuesta antes del ${format_date(object.deadline)}.<br/><br/>
+    
+    % endif Gracias por su participación. -->

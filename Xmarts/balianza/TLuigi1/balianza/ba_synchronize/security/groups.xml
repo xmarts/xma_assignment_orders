@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+    	<record id="ba_alianza_synchronize" model="ir.module.category">
+            <field name="name">Alianza Sincronización</field>
+            <field name="sequence">100</field>
+        </record>
+        
+        <record id="ba_alianza_group_synchronize" model="res.groups">
+            <field name="name">Sincronizar</field>
+            <field name="users" eval="[(4, ref('base.user_admin'))]" />
+            <field name="category_id" eval="ref('ba_synchronize.ba_alianza_synchronize')" />
+        </record>
+
+       
+    </data>
+</odoo>

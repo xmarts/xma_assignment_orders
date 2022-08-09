@@ -1,0 +1,110 @@
+<odoo>
+    <template id="alianza_layoult">
+        <div class="page">
+
+            <t t-if="not o" t-set="o" t-value="doc"/>
+            <t t-if="not company">
+                <t t-if="company_id">
+                    <t t-set="company" t-value="company_id"/>
+                </t>
+                <t t-elif="o and 'company_id' in o">
+                    <t t-set="company" t-value="o.company_id.sudo()"/>
+                </t>
+                <t t-else="else">
+                    <t t-set="company" t-value="res_company"/>
+                </t>
+            </t>
+            <div style="text-align: center; line-height:1; font-size:10pt;">
+                <img t-att-src="image_data_uri(company.logo)" style="max-height: 80px; " alt="Logo"/>
+                <h6><strong>BODEGAS ALIANZA</strong></h6>
+                <span t-if="company.email" t-field="company.email"/>
+                <div class="cashier">
+                    <div>--------------------------------</div>
+                </div>
+                <span>SUPER ABARROTES LA CIENEGE S.A.</span><br/>
+                <span>R.F.C SAC7908082V9</span> <br/>
+                <span>Domicilio Fiscal</span><br/>
+                <t t-esc="docs.config_id.contact_address_complete"/><br/>
+                <strong><span>Sucursal </span> <t t-esc="docs.config_id.name"/></strong><br/>
+                <span>Icacos No. 5</span><br/>
+                <span>Narvarte</span><br/>
+                <span>C.P. 03020 Ciudad de México</span><br/>
+                <span>Delegación: BENITO JUAREZ</span><br/>
+                <span>TELS: 55-19-39-25</span>
+                <br/>
+                <span>REGIMEN FISCAL : RÉGIMEN FISCAL DE LEY, DE LAS PERSONAS MORALES</span><br/>
+                <t t-if="docs.user_id">
+                    <span>Servido por: </span><span t-esc="docs.user_id.name"/>
+                </t>
+            </div><br/>
+            <table style="margin-left: auto; margin-right: auto; line-height:.9;">
+                <tbody>
+                    <t t-set="discount" t-value="docs.get_discount_order()"/>
+                    <t t-foreach="docs.lines" t-as="line" t-key="line.id">
+                        <tr>
+                            <td style="font-size: 11pt; with: 50%;"> <t t-esc="line.product_id.name" /> </td>
+                            <td/>
+                            <td/>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td style="font-size: 11pt; text-align: right; with: 50%;"><t t-esc="line.qty"/> x <t t-esc="line.price_unit"/></td>
+                            <td/>
+                            <td/>
+                            <td><t t-esc="'%.2f'%(line.price_subtotal_incl)" /></td>
+                        </tr>
+                    </t>
+                </tbody>
+            </table>
+            <div style="text-align: right; font-size: 11pt; margin-right:10px">
+                <span>Descuento: </span><t t-esc="discount"/><br/>
+                <t t-set="without_tax" t-value="docs.amount_total-docs.amount_tax"/>
+                <span>Impuestos: <t t-esc='docs.amount_tax' /></span><br/>
+                <span>Total sin Impuestos: <t t-esc='without_tax' /></span><br/>
+                <strong>Total: <t t-esc='docs.amount_total' /></strong><br/>
+            </div>
+            <div style="text-align: center; font-size: 8pt">
+                (<t t-esc="docs.amount_total_text"/>)
+            </div>
+            <br/><br/>
+            <div style="text-align: center; line-height:1; font-size: 11pt;">
+                <strong><span>¡GRACIAS POR TU COMPRA!</span></strong><br/>
+                <strong><span>VISITA NUESTRA TIENDA EN LINEA</span></strong><br/>
+                <strong><span>www.bodegasalianza.com</span></strong><br/>
+                <strong><span>Enviamos a todo México.</span></strong><br/>
+                <strong><span>¡Siguenos en Facebook, Twitter e Instagram!</span></strong><br/>
+                <strong><span>UNA VEZ SALIDA LA MERCANCIA</span></strong><br/>
+                <strong><span>NO SE ACEPTAN DEVOLUCIONES</span></strong><br/>
+                <strong><span>¡RECUERDA!</span></strong><br/>
+                <strong><span>Tu próxima compra puede llegar a tu domicilio con</span></strong><br/>
+                <strong><span>Delivery, ¡De la tienda a tu casa!</span></strong><br/>
+                <strong><span>Solo marca a 55-5351-2460 o envia un mensaje de whatsapp al 55-6966-2234</span></strong><br/>
+                <strong><span>Recibelo el mismo día</span></strong><br/>
+                <strong><span>Consulta políticas de entrega</span></strong><br/>
+            </div>
+                    
+        </div>
+    </template>
+    <template id="report_pos_order_alianza">
+        <t t-set="company" t-value="env.company"/>
+        <t t-call="web.html_container">
+            <t t-call="xma_delivery_alianza.alianza_layoult">
+                
+            </t>
+        </t>
+    </template>
+    <record id="paperformat_ticket_alianza" model="report.paperformat">
+        <field name="name">Orden formato ticket</field>
+        <field name="default" eval="True" />
+        <field name="format">custom</field>
+        <field name="page_height">150</field>
+        <field name="page_width">80</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">3</field>
+        <field name="margin_bottom">3</field>
+        <field name="margin_left">2</field>
+        <field name="margin_right">2</field>
+        <field name="header_line" eval="False" />
+        <field name="dpi">90</field>
+    </record>
+</odoo>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_stock_move_template_tree_gm" model="ir.ui.view" >
+        <field name="name">stock.move.template.gm</field>
+        <field name="model">stock.move</field>
+        <field name="inherit_id" ref="stock.view_stock_move_nosuggest_operations" />
+        <field name="arch" type="xml">
+
+            <field name='product_id' position="after">
+                <field name="unidad" readonly="1"/>
+                <field name="sub_unidad" readonly="1"/>
+                <field name="unidad_sc" attrs="{'invisible': [('sale_line_id', '!=', False)]}" readonly="1"/>
+                <field name="sub_unidad_sc" attrs="{'invisible': [('sale_line_id', '!=', False)]}" readonly="1"/>
+                <field name="sale_line_id"  invisible="1" />
+            </field>
+        </field>
+    </record>
+
+    <record id="view_stock_move_line_template_tree_gm" model="ir.ui.view" >
+        <field name="name">stock.move.line.template.tree.gm</field>
+        <field name="model">stock.move.line</field>
+        <field name="inherit_id" ref="stock.view_stock_move_line_detailed_operation_tree" />
+        <field name="arch" type="xml">
+            <field name="product_id" position="replace">
+                <field name="stock_product_ids" invisible="1" />
+                <field name="product_id" required="1" context="{'default_type': 'product'}" attrs="{'readonly': ['|', ('state', '=', 'done'), ('move_id', '!=', False)]}" domain="[('id','in', stock_product_ids)]"/>
+            </field>
+            <field name='qty_done' position="replace">
+                <field name="unidad" attrs="{'readonly': [('stock_quant_id', '=', False)]}" />
+                <field name="sub_unidad" attrs="{'readonly': [('stock_quant_id', '=', False)]}"/>
+                <field name="cantidad" readonly="1" />
+                <field name="qty_done" invisible="True" />
+            </field>
+            <field name="lot_id" position="replace">
+                <field name="lot_id" string="N° Lote/Serie" readonly="1" force_save="1" />
+            </field>
+            <field name="location_id" position="replace" >
+                <field name="location_id"  attrs="{'column_invisible': [('parent.picking_type_code', '=', 'incoming')]}" groups="stock.group_stock_multi_locations" domain="[('id', 'in', warehouse_ids)]" options="{'no_open': True, 'no_create_edit': True, 'no_create': True}" />
+                <field name="warehouse_ids"  />
+                <field name="stock_quant_ids" invisible="1" />
+                <field name="stock_quant_id" required="True" options="{'no_open': True, 'no_create_edit': True, 'no_create': True}" domain="[('id','in',stock_quant_ids)]" attrs="{'readonly': [('product_id', '=', False)]}" />
+            </field>
+            <field name='product_uom_qty' position="before">
+                <field name="ubication_id" options="{'no_create': True, 'no_create_edit':True}" domain="[('location_position_id.location_related', '=',location_dest_id)]" attrs="{'required': [('location_dest_id', '!=', False)],'column_invisible': [('parent.picking_type_code', '=', 'outgoing')]}" />
+                <field name="sub_ubication_id" options="{'no_create': True, 'no_create_edit':True}" domain="[('position_id', '=', ubication_id)]" attrs="{'required': [('location_dest_id', '!=', False)],'column_invisible': [('parent.picking_type_code', '=', 'outgoing')]}" />
+                <field name="qty_unidad" />
+                <field name="qty_sub_unidad" />
+            </field>
+            <!--<field name='product_uom_qty' position="replace"> 
+                <field name="product_uom_qty" attrs="{'column_invisible': ['|',('parent.immediate_transfer', '=', True),('parent.picking_type_code','=','incoming')]}" optional="show"/>
+            </field>-->
+        </field>
+    </record>
+
+    <record id="view_stock_move_line_operation_tree_gm" model="ir.ui.view" >
+        <field name="name">stock.move.line.operation.tree.gm</field>
+        <field name="model">stock.move.line</field>
+        <field name="inherit_id" ref="stock.view_stock_move_line_operation_tree" />
+        <field name="arch" type="xml">
+            <field name='qty_done' position="replace">
+                <field name="no_charge_cost" width="1.5" />
+                <field name="unidad" />
+                <field name="sub_unidad" />
+                <field name="cantidad" readonly="1" />
+                <field name="qty_done" invisible="True" />
+            </field>
+
+            <field name="location_dest_id" position="after" >
+                <field name="ubication_id" options="{'no_create': True, 'no_create_edit':True}" domain="[('location_position_id.location_related', '=',location_dest_id)]" attrs="{'readonly': [('location_dest_id', '=', False)]}" />
+                <field name="sub_ubication_id" options="{'no_create': True, 'no_create_edit':True}" domain="[('position_id', '=', ubication_id)]" attrs="{'readonly': [('ubication_id', '=', False)]}" />
+            </field>
+            <field name="lot_name" position="replace" >
+                <field name="lot_name" string="N° Lote/Serie" widget="text" groups="stock.group_production_lot" placeholder="Lote/Serie..." attrs="{'readonly': ['&amp;', ('package_level_id', '!=', False), ('parent.picking_type_entire_packs', '=', True)]}" invisible="not context.get('show_lots_text')" />
+            </field>
+
+            <field name="product_uom_id" position ="replace" >
+                <field name="product_uom_id" options="{'no_open': True, 'no_create': True}" readonly="1" force_save="1" string="Unidad de medida" groups="uom.group_uom"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>

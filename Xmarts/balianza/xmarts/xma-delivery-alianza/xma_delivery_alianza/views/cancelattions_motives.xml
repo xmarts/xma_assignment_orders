@@ -1,0 +1,61 @@
+<odoo>
+    <record id="pos_order_cancellations_form" model="ir.ui.view">
+        <field name="name">pos.order.cancellations.form</field>
+        <field name="model">pos.order.cancellations</field>
+        <field name="arch" type="xml">
+            <form string="Cancelaciones">
+
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="visible"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="pos_order_cancellations_tree" model="ir.ui.view">
+        <field name="name">pos.order.cancellations.form</field>
+        <field name="model">pos.order.cancellations</field>
+        <field name="arch" type="xml">
+            <tree string="Cancelaciones">
+                <field name="name"/>
+                <field name="visible"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="motives_cancellations_alianza" model="ir.actions.act_window">
+        <field name="name">Motivos de Cancelacion</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">pos.order.cancellations</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" eval="False"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Defina un nuevo Motivo de Cancelacion
+            </p><p>
+                Utilice los motivos de cancelacion para especificar 
+                porque se cancela la venta. 
+            </p>
+        </field>
+    </record>
+
+
+    <menuitem 
+    id="menu_motives_cancelation_pos" 
+    name="Motivos de Cancelacion"
+    parent="point_of_sale.menu_point_of_sale"
+    action="xma_delivery_alianza.motives_cancellations_alianza" 
+    sequence="201"/>
+    
+    <menuitem 
+        id="menu_motives_cancelation_sales" 
+        name="Motivos de Cancelacion"
+        parent="sale.sale_order_menu"
+        action="xma_delivery_alianza.motives_cancellations_alianza"
+        sequence="200"/>
+</odoo>

@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+
+    <record id="view_barcode_tree" model="ir.ui.view">
+            <field name="name">barcode</field>
+            <field name="model">barcodes.product</field>
+            <field name="priority">2</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="product_id" />
+                    <field name="unit_of_measure_id" />
+                </tree>
+            </field>
+    </record>
+
+    <record id="view_barcode_form" model="ir.ui.view">
+            <field name="name">barcodes.product.form</field>
+            <field name="model">barcodes.product</field>
+            <field name="arch" type="xml">
+              <form string="Codigos de barras" >
+                <sheet>
+                    <group name="information_left">
+                        <group name="information_left">
+                            <field name="name"/>
+                            <field name="product_id" />        
+                        </group>
+                        <group name="information_rithg">
+                            <field name="unit_of_measure_id" />
+                        </group>
+                    </group>        
+                </sheet>
+              </form>
+            </field>
+        </record>
+
+
+
+    <record id="action_ba_barcode" model="ir.actions.act_window">
+            <field name="name">Codigos de barras</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">barcodes.product</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+   
+
+    <menuitem id="ba_barcode" action="ba_synchronize.action_ba_barcode" name="Codigos de barras" sequence="3" parent="sale.product_menu_catalog" groups="base.group_erp_manager"/>
+
+
+    </data>
+</odoo>
+
+

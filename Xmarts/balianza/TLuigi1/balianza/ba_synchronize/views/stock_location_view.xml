@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<record id="view_stock_location_ba" model="ir.ui.view" >
+        <field name="name">stock.location.ba</field>
+        <field name="model">stock.location</field>
+        <field name="inherit_id" ref="stock.view_location_form" />
+        <field name="arch" type="xml">
+            <field name="company_id" position="after">
+                <field name="code"/>
+                <field name="code_ptv" />
+                <field name="sequence" />
+            </field>
+        </field>
+    </record>
+
+    <record id="view_position_tree_ba" model="ir.ui.view">
+            <field name="name">Ubicaciones</field>
+            <field name="model">stock.position</field>
+            <field name="priority">2</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="location_position_id" invisible="1" />
+                    <field name="subpositions_related" widget="many2many_tags" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_subposition_tree_ba" model="ir.ui.view">
+            <field name="name">Sub-ubicaciones</field>
+            <field name="model">stock.subposition</field>
+            <field name="priority">2</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="position_id" invisible="1" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_position_form_ba" model="ir.ui.view">
+            <field name="name">stock.position.form</field>
+            <field name="model">stock.position</field>
+            <field name="arch" type="xml">
+              <form string="synchronizes" >
+
+                <sheet>
+                    <group>
+                        <group name="information_left">
+                            <field name="name"/>
+                        </group>
+                        <group name="information_rithg">
+                            <field name="subpositions_related" />
+                            <field name="location_position_id" invisible="1" />
+                        </group>
+                    </group>
+                </sheet>
+              </form>
+            </field>
+        </record>
+
+        <record id="view_subposition_form_ba" model="ir.ui.view">
+            <field name="name">stock.subposition.form</field>
+            <field name="model">stock.subposition</field>
+            <field name="arch" type="xml">
+              <form string="synchronizes" >
+
+                <sheet>
+                    <group>
+                        <group name="information_left">
+                            <field name="name"/>
+                        </group>
+                        <group name="information_rithg">
+                            <field name="position_id" invisible="1" />
+                        </group>
+                    </group>
+                </sheet>
+              </form>
+            </field>
+        </record>
+
+        <record id="ba_stock_position" model="ir.actions.act_window">
+            <field name="name">Ubicaciones</field>
+            <field name="res_model">stock.position</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    No hay ubicaciones creadas.
+                </p>
+            </field>
+        </record>
+
+        <record id="ba_stock_subposition" model="ir.actions.act_window">
+            <field name="name">Sub-Ubicaciones</field>
+            <field name="res_model">stock.subposition</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    No hay sub-ubicaciones creadas.
+                </p>
+            </field>
+
+        </record>
+
+        <menuitem action="ba_stock_subposition" id="ba_menu_stock_subposition"
+            parent="stock.menu_warehouse_config" sequence="3" groups="stock.group_stock_multi_locations"/>
+
+        <menuitem action="ba_stock_position" id="ba_menu_stock_position"
+        parent="stock.menu_warehouse_config" sequence="2"  groups="stock.group_stock_multi_locations"/>
+
+        
+</odoo>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/TLuigi1/balianza" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/point-of-sale-settings" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/xmarts/xma-delivery-alianza" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/xmarts/xma-detail-pdv-alianza" vcs="Git" />
+  </component>
+</project>

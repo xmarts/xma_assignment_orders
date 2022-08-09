@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+  <record id="view_pos_order_tree" model="ir.ui.view">
+        <field name="name">pos.order.tree</field>
+        <field name="model">pos.order</field>
+        <field name="arch" type="xml">
+
+            <tree string="POS Orders" sample="1">
+                <field name="currency_id" invisible="1"/>
+                <field name="name" decoration-bf="1"/>
+                <field name="serie_id" string="Serie" />
+                <field name="session_id" />
+                <field name="date_order"/>
+                <field name="pos_reference"/>
+                <field name="partner_id"/>
+                <field string="Cashier" name="user_id" widget="many2one_avatar_user"/>
+                <field name="amount_total" sum="Amount total" widget="monetary" decoration-bf="1"/>
+                <field name="state" widget="badge" decoration-info="state == 'draft'" decoration-success="state not in ('draft','cancel')"/>
+            </tree>
+        </field>
+    </record>
+
+  <record id="view_pos_template_ba" model="ir.ui.view" >
+        <field name="name">pos.session.ba</field>
+        <field name="model">pos.session</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_session_form" />
+        <field name="arch" type="xml">
+            <field name="stop_at" position="after">
+                <field name="from_sia" />
+            </field>
+        </field>
+  </record>
+
+  <record id="view_pos_template_form_ba" model="ir.ui.view" >
+        <field name="name">pos.order.ba</field>
+        <field name="model">pos.order</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_pos_form" />
+        <field name="arch" type="xml">
+
+            <field name="name" position="before" >
+                <field name="serie_related_ids" invisible="1" />
+                <field name="serie_id" string="Serie" required="1" domain="[('id', 'in', serie_related_ids)]" options="{'no_open': True, 'no_create_edit': True, 'no_create': True}"/>
+                
+       
+            </field>
+
+        </field>
+  </record>
+
+</odoo>

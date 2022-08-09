@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+
+    <record id="view_params_log_comercial_tree" model="ir.ui.view">
+            <field name="name">Parametros comerciales</field>
+            <field name="model">params.log.comercial</field>
+            <field name="priority">2</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name" />
+                    <field name="company_id" /> 
+                    <field name="point_sale_id" />
+                    <field name="percent_update_limit_up" />
+                    <field name="percent_update_limit_down" />
+                </tree>
+            </field>
+    </record>
+
+    <record id="view_params_log_comercial_form" model="ir.ui.view">
+            <field name="name">params.log.comercial.form</field>
+            <field name="model">params.log.comercial</field>
+            <field name="arch" type="xml">
+              <form string="Parametros" >
+                <sheet>
+                    <group name="information_left">
+                        <group name="information_left">
+                            <field name="name" invisible="1"/>
+                            <field name="company_id" />
+                            <field name="point_sale_id" />
+                        </group>
+                        <group name="information_rithg">
+                            <field name="percent_update_limit_up" />
+                            <field name="percent_update_limit_down" />
+                        </group>
+                    </group>
+                                
+                </sheet>
+              </form>
+            </field>
+        </record>
+
+
+    <record id="action_params_log_comercial_view" model="ir.actions.act_window">
+            <field name="name">Parametros Almacenes permitidos en puntos de venta</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">params.log.comercial</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+
+    <menuitem id="ba_params_log_comercial" action="action_params_log_comercial_view" name="Parametros comerciales"  parent="sale.menu_sales_config" sequence="3" />
+
+
+    </data>
+</odoo>
+
+

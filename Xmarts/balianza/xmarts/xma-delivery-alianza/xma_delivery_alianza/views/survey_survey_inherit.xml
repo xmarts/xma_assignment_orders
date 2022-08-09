@@ -1,0 +1,15 @@
+<odoo>
+    <record id="survey_survey_inherit_form_alianza" model="ir.ui.view">
+        <field name="name">survey.survey.inherit.form</field>
+        <field name="model">survey.survey</field>
+        <field name="inherit_id" ref="survey.survey_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//notebook/page[@name='options']/group" position="inside">
+                <group string="Configuracion de plantilla para encuestas">
+                    <field name="url_survey" invisible="1"/>
+                    <field name="template_id_survey"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

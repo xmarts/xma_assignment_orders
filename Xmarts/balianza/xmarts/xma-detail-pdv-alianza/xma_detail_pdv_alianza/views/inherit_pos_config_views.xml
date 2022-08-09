@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="inherit_pos_config_form_view" model="ir.ui.view">
+        <field name="name">inherit.pos.config.form.view</field>
+        <field name="model">pos.config</field>
+        <field name="inherit_id" ref="point_of_sale.pos_config_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[5]" position="inside">
+                <!-- <h2>PDV</h2> -->
+                <!-- <div class="row mt16 o_settings_container" id="pdv"> -->
+                    <div class="col-12 col-lg-6 o_setting_box" id="contact_idd">
+                        <!-- <div class="o_setting_left_pane">
+                            <field name="contact_id"/>
+                        </div> -->
+                        <div class="o_setting_right_pane">
+                            <label for="contact_id" string="Ubicación"/>
+                            <div class="content-group mt16">
+                                <field name="contact_id"/>
+                            </div>
+                            <label for="contact_address_complete" string="Dirección"/>
+                            <div class="content-group mt16">
+                                <field name="contact_address_complete"/>
+                            </div>
+                            <label for="is_delivery" string="Delivery"/>
+                            <div class="content-group mt16">
+                                <field name="is_delivery"/>
+                            </div>
+                            <label for="resource_calendar_is" string="Horas de servicio"/>
+                            <div class="content-group mt16">
+                                <field name="resource_calendar_is"/>
+                            </div>
+                            <label for="pos_availability" string="Disponibilidad del PDV"/>
+                            <div class="content-group mt16">
+                                <field name="pos_availability"/>
+                            </div>
+                        </div>
+                    </div>
+                <!-- </div> -->
+            </xpath>
+        </field>
+    </record>
+
+    <record id="inherit_pos_config_kanban_view" model="ir.ui.view">
+        <field name="name">inherit.pos.config.kanban.view</field>
+        <field name="model">pos.config</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_config_kanban"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@class='container o_kanban_card_content']" position="inside">
+                <field name="is_delivery" invisible="1"/>
+                <t t-if="record.is_delivery.raw_value == 1">
+                    <div style="text-align:right;">
+                        <strong>Delivery</strong>
+                    </div>
+                </t>
+                <field name="pos_availability" invisible="1"/>
+                <div style="text-align:right;" t-if="record.pos_availability.raw_value == 'ss'">
+                    <span class="fa fa-circle text-muted" role="img" aria-label="Sin servicio" title="Sin servicio"></span>
+                </div>
+                <div style="text-align:right;" t-if="record.pos_availability.raw_value == 'es'">
+                    <span class="fa fa-circle text-success" role="img" aria-label="En servicio" title="En servicio"></span>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="inherit_pos_config_search_view" model="ir.ui.view">
+      <field name="name">inherit.pos.config.search.view</field>
+      <field name="model">pos.config</field>
+      <field name="inherit_id" ref="point_of_sale.view_pos_config_search"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search" position="inside">
+                <filter string="PDV en servicio" name="pos_availability" domain="[('pos_availability', '=', 'es')]"/>
+                <filter string="PDV sin servicio" name="pos_availability2" domain="[('pos_availability', '=', 'ss')]"/>
+                <filter string="PDV con delivery" name="is_delivery" domain="[('is_delivery', '=', True)]"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

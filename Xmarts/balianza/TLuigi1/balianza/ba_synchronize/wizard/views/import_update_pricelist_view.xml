@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="cfs_view_import_update_prices" model="ir.ui.view">
+            <field name="name">cfs.import.invoices.form</field>
+            <field name="model">cfs.import.wizard</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Importación Actualización Precios">
+                    <group colspan="4">
+                        <group>
+                        <field name="file" required="True"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button string="Importar actualización precios" type="object" name="fetch_invoice_data" class="btn-primary"/> or<button name="cancel" string="Cancelar" special="cancel" class="oe_link"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="cfs_action_import_update_prices" model="ir.actions.act_window">
+            <field name="name">Importación Actualización Precios</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">cfs.import.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="cfs_view_import_update_prices"/>
+            <field name="context">{}</field>
+            <field name="target">new</field>
+            <field name="help">Este wizard permitirá al usuario modificar el precio de productos en una o multiples listas de precios mediante importación en Excel.</field>
+        </record>
+
+
+        <menuitem id="menu_import_product_pricelist" name="Importación actualización de precios" parent="sale.product_menu_catalog" action="ba_synchronize.cfs_action_import_update_prices" groups="product.group_product_pricelist" sequence="4"/>
+
+    </data>
+</openerp>

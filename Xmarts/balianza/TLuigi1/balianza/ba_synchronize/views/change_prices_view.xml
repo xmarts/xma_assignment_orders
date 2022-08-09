@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+
+    <record id="view_change_prices_tree" model="ir.ui.view">
+            <field name="name">Cambio de precios</field>
+            <field name="model">change.prices</field>
+            <field name="priority">2</field>
+            <field name="arch" type="xml">
+                <tree default_order="change_date desc">
+                    <field name="name" />
+                    <field name="user_id" /> 
+                    <field name="change_date" />
+                    <field name="pricelist_id" /> 
+                    <field name="product_id" /> 
+                    <field name="type_update" /> 
+                    <field name="price_new" />
+                    <field name="discount_new" />
+                    <field name="price_old" />
+                    <field name="discount_old" />
+                    <field name="inv_available" />
+                    <field name="packing_quantity" />
+                    <field name="packing_unit_id" />
+                    <field name="quantity_unit" />
+                    <field name="unit_id" />
+                </tree>
+            </field>
+    </record>
+
+
+    <record id="action_ba_change_prices_view" model="ir.actions.act_window">
+            <field name="name">Cambio de precios</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">change.prices</field>
+            <field name="view_mode">tree</field>
+        </record>
+
+
+
+    <menuitem id="ba_change_prices" action="action_ba_change_prices_view" name="Cambio de precios" sequence="1" parent="sale.menu_sale_report" groups="base.group_erp_manager"/>
+
+
+
+    </data>
+</odoo>
+
+

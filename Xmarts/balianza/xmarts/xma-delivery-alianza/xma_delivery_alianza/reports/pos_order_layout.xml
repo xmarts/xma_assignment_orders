@@ -1,0 +1,24 @@
+<odoo>
+    <record id="action_report_pos_order_alianza" model="ir.actions.report">
+        <field name="name">Reporte de Orden</field>
+        <field name="model">pos.order</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">xma_delivery_alianza.report_pos_order_alianza</field>
+        <field name="report_file">xma_delivery_alianza.report_pos_order_alianza</field>
+        <field name="print_report_name">'Ticket'</field>
+        <field name="binding_model_id" ref="model_pos_order"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="xma_delivery_alianza.paperformat_ticket_alianza"/>
+    </record>
+
+    <record id="action_report_account_move_alianza" model="ir.actions.report">
+        <field name="name">Reporte de Factura</field>
+        <field name="model">pos.order</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">xma_delivery_alianza.report_account_move_alianza</field>
+        <field name="report_file">xma_delivery_alianza.report_account_move_alianza</field>
+        <field name="print_report_name">'Ticket'</field>
+        <field name="binding_model_id" ref="model_pos_order"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

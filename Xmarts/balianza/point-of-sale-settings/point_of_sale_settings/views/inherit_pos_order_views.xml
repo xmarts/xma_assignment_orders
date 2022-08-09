@@ -1,0 +1,15 @@
+<odoo>
+  <data>
+    <record id="view_pos_order_form_inherit" model="ir.ui.view">
+      <field name="name">view.pos.order.form.inherit</field>
+      <field name="model">pos.order</field>
+      <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="//field[@name='session_id']" position="after">
+            <!-- <field name="code" /> -->
+            <field name="repart" />
+        </xpath>
+      </field>
+    </record>
+  </data>
+</odoo>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="post_festive_days_form_view" model="ir.ui.view">
+            <field name="name">post.festive.days.form.view</field>
+            <field name="model">post.festive.days</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="config_id"/>
+                                <field name="description"/>
+                                <field name="date_start"/>
+                            </group>
+                            <group>
+                                <field name="date_end"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="post_festive_days_tree_view" model="ir.ui.view">
+            <field name="name">post.festive.days.tree.view</field>
+            <field name="model">post.festive.days</field>
+            <field name="arch" type="xml">
+                <tree editable="bottom">
+                    <field name="config_id"/>
+                    <field name="description"/>
+                    <field name="date_start"/>
+                    <field name="date_end"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="post_festive_days_search_view" model="ir.ui.view">
+            <field name="name">post.festive.days.search.view</field>
+            <field name="model">post.festive.days</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="config_id"/>
+                    <field name="description"/>
+                    <field name="date_start"/>
+                    <field name="date_end"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="post_festive_days_action" model="ir.actions.act_window">
+            <field name="name">Dias inhábiles</field>
+            <field name="res_model">post.festive.days</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem
+            id="post_festive_days_menu"
+            name="Dias inhábiles"
+            action="post_festive_days_action"
+            parent="point_of_sale.menu_point_config_product"
+            sequence="100"
+        />
+    </data>
+</odoo>

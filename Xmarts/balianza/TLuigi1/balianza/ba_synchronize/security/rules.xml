@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record model="ir.rule" id="record_sale_delivery_ba_rule">
+            <field name="name">sale_delivery_ba: multi-company</field>
+            <field name="model_id" ref="model_sale_delivery_ba"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">
+                ['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]
+            </field>
+        </record>
+
+        <record model="ir.rule" id="record_params_serie_point_sale_warehouse_rule">
+            <field name="name">params_serie_point_sale_warehouse: multi-company</field>
+            <field name="model_id" ref="model_params_serie_point_sale_warehouse"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">
+                ['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]
+            </field>
+        </record>
+
+       
+    </data>
+</odoo>

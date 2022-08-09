@@ -1,0 +1,106 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record id="view_sale_delivery_ba_tree" model="ir.ui.view">
+        <field name="name">sale.delivery.ba.tree</field>
+        <field name="model">sale.delivery.ba</field>
+        <field name="priority">2</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="partner_id"/>
+                <field name="serie_id"/>
+            </tree>
+        </field>
+    </record>
+
+
+
+    <record id="view_sale_delivery_ba_form" model="ir.ui.view">
+        <field name="name">sale.delivery.ba.form</field>
+        <field name="model">sale.delivery.ba</field>
+        <field name="arch" type="xml">
+            <form string="Pre orders">
+                <header>
+                    <button name="action_search_stock_in_points_of_sale" type="object"
+                            string="Buscar disponibilidad en puntos de venta" class="btn btn-warning"/>
+                    <button name="delivery_reasignation" type="object" string="Reasignar repartidor"
+                            class="btn btn-warning"/>
+                    <map res_partner="partner_id"/>
+                </header>
+
+                <sheet>
+                    <group name="information_left">
+                        <group name="information_left">
+                            <field name="partner_id"/>
+                        </group>
+                        <group name="information_rithg">
+                            <field name="serie_id" readonly="1"/>
+                            <field name="pricelist_id" string="Lista de precios" readonly="1" force_save="1"/>
+                        </group>
+                    </group>
+
+                    <group name="products" string="Productos">
+                        <field name="delivery_line_ids" nolabel="1">
+                            <tree editable="bottom">
+                                <field name="product_id"/>
+                                <field name="quantity_unit"/>
+                                <field name="unidad"/>
+                                <field name="sub_unidad"/>
+                                <field name="product_uom_qty" string="Cantidad" readonly="1"/>
+                                <field name="pricelist_id" invisible="1"/>
+                                <field name="pricelist_name" readonly="1"/>
+                                <field name="box_price" readonly="1"/>
+                                <field name="price_unit" string="Precio unitario"/>
+                            </tree>
+                        </field>
+                    </group>
+
+                    <group name="note_group" col="6" class="mt-2 mt-md-0">
+                        <group colspan="4">
+
+                        </group>
+                        <group class="oe_subtotal_footer oe_right" colspan="2" name="sale_total">
+                            <field name="amount_untaxed" widget='monetary' options="{'currency_field': 'currency_id'}"/>
+                            <field name="amount_tax" widget='monetary' options="{'currency_field': 'currency_id'}"/>
+                            <div class="oe_subtotal_footer_separator oe_inline o_td_label">
+                                <label for="amount_total"/>
+                            </div>
+                            <field name="amount_total" nolabel="1" class="oe_subtotal_footer_separator"
+                                   widget='monetary' options="{'currency_field': 'currency_id'}"/>
+                        </group>
+                        <div class="oe_clear"/>
+                    </group>
+                    <group name="sale_delivery_stock" string="Puntos de venta disponibles">
+                        <field name="delivery_stock_ids" nolabel="1">
+                            <tree default_order="percentage_order desc" decoration-danger="percentage_order&lt;=0.50"
+                                  decoration-success="percentage_order == 1"
+                                  decoration-warning="percentage_order &gt;= 0.51 and percentage_order&lt;= 0.99">
+                                <field name="pos_id"/>
+                                <field name="percentage_order" widget="percentage"/>
+                                <field name="distance"/>
+                                <field name="price_delivery"/>
+                            </tree>
+                        </field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+
+
+    <record id="action_sale_delivery_ba" model="ir.actions.act_window">
+        <field name="name">Pre-pedido</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.delivery.ba</field>
+        <field name="view_mode">tree,form,map</field>
+    </record>
+
+
+    <menuitem id="sale_delivery_ba" action="ba_synchronize.action_sale_delivery_ba" name="Pre pedido delivery"
+              sequence="0" parent="point_of_sale.menu_point_root" groups="point_of_sale.group_pos_user"/>
+
+</odoo>
+
+

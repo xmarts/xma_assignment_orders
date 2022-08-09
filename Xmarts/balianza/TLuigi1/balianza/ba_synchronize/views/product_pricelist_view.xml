@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<record id="view_product_pricelist_ba" model="ir.ui.view" >
+        <field name="name">product.pricelist.ba</field>
+        <field name="model">product.pricelist</field>
+        <field name="inherit_id" ref="product.product_pricelist_view" />
+        <field name="arch" type="xml">
+            <field name="company_id" position="before">
+                <field name="code" string="Codigo" required="1"/>
+            </field>
+        </field>
+    </record>
+
+
+    <record id="view_product_pricelist_tree_ba" model="ir.ui.view" >
+        <field name="name">product.pricelist.ba</field>
+        <field name="model">product.pricelist</field>
+        <field name="inherit_id" ref="product.product_pricelist_view_tree" />
+        <field name="arch" type="xml">
+            <field name="name" position="before">
+                <field name="code"  string="Codigo"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_product_pricelist_item_ba" model="ir.ui.view" >
+        <field name="name">product.pricelist.item.ba</field>
+        <field name="model">product.pricelist.item</field>
+        <field name="inherit_id" ref="product.product_pricelist_item_form_view" />
+        <field name="arch" type="xml">
+            <field name="fixed_price" position="replace">
+                <field name="price_unidad" attrs="{'invisible':['|',('compute_price', '!=', 'fixed'),('compute_price', '=', 'fixed'),('applied_on', '!=', '1_product')]}"/>
+                <field name="percent_discount_unidad" attrs="{'invisible':['|',('compute_price', '!=', 'fixed'),('compute_price', '=', 'fixed'),('applied_on', '!=', '1_product')]}" />
+                <field name="fixed_price" attrs="{'invisible':['|',('compute_price', '!=', 'fixed'),('applied_on', '=', '1_product'),('compute_price', '=', 'fixed')]}" />
+                <field name="price_sub_unidad" attrs="{'invisible':['|',('compute_price', '!=', 'fixed'),('compute_price', '=', 'fixed'),('applied_on', '!=', '1_product')]}"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="product_pricelist_action2" model="ir.actions.act_window">
+            <field name="name">Listas de Precios</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.pricelist</field>
+            <field name="view_mode">tree,kanban,form</field>
+            <field name="search_view_id" ref="product.product_pricelist_view_search" />
+            <field name="context">{"default_base":'list_price'}</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Crear una nueva Lista de precios
+              </p>
+            </field>
+        </record>
+
+</odoo>

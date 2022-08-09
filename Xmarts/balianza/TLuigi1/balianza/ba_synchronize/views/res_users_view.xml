@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<record id="view_res_users_ba" model="ir.ui.view" >
+        <field name="name">res.users.ba</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form" />
+        <field name="arch" type="xml">
+            <field name="company_id" position="after">
+                <field name="user_code_id" />
+                <field name="point_sale_ids">
+                    <tree string="Puntos de venta permitidos" options="{'no_create_edit': True}">
+                        <field name="name"/>
+                        <field name="code"/>
+                        <field name="company_id"/>
+                    </tree>
+                </field>
+            </field>
+
+        </field>
+    </record>
+</odoo>

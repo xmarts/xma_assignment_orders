@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+
+    <record id="view_latitude_length_tree" model="ir.ui.view">
+            <field name="name">ba.latitude.length</field>
+            <field name="model">latitude.length</field>
+            <field name="priority">2</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name" />
+                    <field name="zipcode" />
+                    <field name="latitude" />
+                    <field name="length" />
+                </tree>
+            </field>
+    </record>
+
+
+    <record id="view_latitude_length_form" model="ir.ui.view">
+            <field name="name">ba.latitude.length.form</field>
+            <field name="model">latitude.length</field>
+            <field name="arch" type="xml">
+              <form string="latitude_lengths" >
+                <header>
+                    <button name="action_generate_latitude_length" type="object" string="Generar Latitud y Longitud" class="btn btn-warning" />
+                </header>
+                <sheet>
+                    <group name="information_left">
+                        <group name="information_left">
+                            <field name="name" />
+                            <field name="zipcode" />
+                        </group>
+                        <group name="information_rithg">
+                            <field name="latitude" />
+                            <field name="length" />
+                        </group>
+                    </group>    
+                    
+                </sheet>
+              </form>
+            </field>
+        </record>
+
+
+
+        <record id="action_ba_latitude_length" model="ir.actions.act_window">
+            <field name="name">Codigos postales</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">latitude.length</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="ba_latitude_length" action="action_ba_latitude_length" name="Latitud y longitud por codigo postal" sequence="3" parent="ba_synchronize.synchronize_root" groups="base.group_erp_manager"/>
+
+    </data>
+</odoo>
+
+

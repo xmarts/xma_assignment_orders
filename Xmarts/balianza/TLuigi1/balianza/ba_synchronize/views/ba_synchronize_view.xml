@@ -1,0 +1,229 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+
+    <record id="ba_synchronize_record_1" model="ba.synchronize">
+        <field name="name">LTO_Cedis_100421</field>
+        <field name="ip">192.168.1.15</field>
+        <field name="user">sa</field>
+        <field name="port">1043</field>
+        <field name="password">alibod$</field>
+
+    </record>
+    
+
+
+    <record id="view_synchronize_parameters_tree" model="ir.ui.view">
+            <field name="name">Synchronize Parameters</field>
+            <field name="model">ba.parametros.integracion.sia.odoo</field>
+            <field name="priority">2</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="code_api"/>
+                    <field name="url_api" />
+                    <field name="user_api" />
+                    <field name="password_api" password="True"/>
+                    <field name="description_api" />
+                    <field name="synchronize" />
+                    
+                </tree>
+            </field>
+    </record>
+
+    <record id="view_synchronize_tree" model="ir.ui.view">
+            <field name="name">Synchronize</field>
+            <field name="model">ba.synchronize</field>
+            <field name="priority">2</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="ip" />
+                    <field name="user" />
+                    <field name="port" />
+                    <field name="password" password="True"/>
+                </tree>
+            </field>
+    </record>
+
+
+    <!--<record id="view_parametros_integracion_tree" model="ir.ui.view">
+            <field name="name">Parametros integración</field>
+            <field name="model">ba.parametros.integracion.sia.odoo</field>
+            <field name="priority">2</field>
+            <field name="arch" type="xml">
+                <tree create="False">
+                    <field name="code_api"/>
+                    <field name="url_api" />
+                    <field name="user_api" />
+                    <field name="password_api" password="True" />
+                    <field name="description_api" />
+                    <field name="registration_date"/>
+                    <field name="synchronize" />
+                    <field name="synchronize_related_id" invisible="True" />
+                </tree>
+            </field>
+    </record>-->
+
+    <record id="view_synchronize_form" model="ir.ui.view">
+            <field name="name">ba.synchronize.form</field>
+            <field name="model">ba.synchronize</field>
+            <field name="arch" type="xml">
+              <form string="synchronizes" >
+                <header>
+                    <button name="action_synchronize_all" type="object" string="SINCRONIZAR TODO" class="btn btn-warning" />
+                    <button name="action_synchronize_users" type="object" string="SINCRONIZAR USUARIOS" class="oe_highlight"/>
+                    <button name="action_synchronize_clients" type="object" string="SINCRONIZAR CLIENTES" class="oe_highlight" />
+                    <button name="action_synchronize_suppliers" type="object" string="SINCRONIZAR PROVEEDORES" class="oe_highlight" />
+                    <button name="action_synchronize_business" type="object" string="SINCRONIZAR EMPRESAS" class="oe_highlight" />
+                    <button name="action_synchronize_products" type="object" string="SINCRONIZAR PRODUCTOS" class="oe_highlight" />
+                     <button name="action_synchronize_stock" type="object" string="SINCRONIZAR AlMACENES" class="oe_highlight" />
+                    <button name="action_synchronize_kardex" type="object" string="SINCRONIZAR KARDEX" class="oe_highlight" />
+                    <button name="action_synchronize_sale_order" type="object" string="SINCRONIZAR PEDIDOS" class="oe_highlight" />
+                    <button name="action_synchronize_price_list" type="object" string="SINCRONIZAR LISTAS DE PRECIOS" class="oe_highlight" />
+                    <button name="action_synchronize_series" type="object" string="SINCRONIZAR SERIES" class="oe_highlight" />
+                    <button name="action_synchronize_employes" type="object" string="SINCRONIZAR EMPLEADOS" class="oe_highlight" />
+                    <button name="action_synchronize_params_stock_ptv" type="object" string="SINCRONIZAR PARAMETROS AlMACENES-SERIE-PVT" class="oe_highlight" />
+                    <button name="action_synchronize_point_of_sale" type="object" string="SINCRONIZAR PUNTOS DE VENTA" class="oe_highlight" />
+                    <button name="action_synchronize_barcodes" type="object" string="SINCRONIZAR CODIGOS DE BARRAS" class="oe_highlight" />
+                    <button name="action_synchronize_logistics_footprint" type="object" string="SINCRONIZAR HUELLA LOGISTICA" class="oe_highlight" />
+                    <button name="action_synchronize_postal_code" type="object" string="SINCRONIZAR CODIGOS POSTALES" class="oe_highlight" />
+                </header>
+
+                <sheet>
+                    <group name="information_left">
+                        <group name="information_left">
+                            <field name="name"/>
+                            <field name="user" />
+                            <field name="port" />
+                            
+                        </group>
+                        <group name="information_rithg">
+                            <field name="ip" />
+                            <field name="password" password="True"/>
+                        </group>
+                    </group>
+                    <group name="integration" string="Parametros integración">
+                        <field name="integration_parameters_ids" nolabel="1">
+                            <tree editable="bottom">
+                                <field name="code_api"/>
+                                <field name="url_api" />
+                                <field name="user_api" />
+                                <field name="password_api" password="True" />
+                                <field name="description_api" />
+                                <field name="registration_date"/>
+                                <field name="synchronize" />
+                                <field name="synchronize_related_id" invisible="True" />
+                            </tree>
+                        </field>
+                        
+                    </group>
+
+                    <group>
+                        <group>
+                            <field name="users_synchronized" readonly="1" />
+                            <field name="clients_synchronized" readonly="1" />
+                            <field name="business_synchronized" readonly="1" />
+                            <field name="kardex_synchronized"  readonly="1"/>
+                            <field name="params_stock_serie_ptv_synchronized"  readonly="1"/>
+                            <field name="point_of_sale_synchronized"  readonly="1"/>
+                            <field name="logistics_footprint_synchronized" readonly="1" />
+                            <field name="postal_code_synchronized" readonly="1" />
+                        </group>
+                        <group>
+                            <field name="stock_synchronized" readonly="1" />
+                            <field name="suppliers_synchronized" readonly="1" />
+                            <field name="productos_synchronized" readonly="1"/>
+                            <field name="barcodes_synchronized" readonly="1"/>
+                            <field name="sale_order_synchronized" readonly="1"/>
+                            <field name="price_list_synchronized" readonly="1" />
+                            <field name="series_synchronized" readonly="1" />
+                        </group>
+                    </group>
+
+                        
+                    
+                </sheet>
+              </form>
+            </field>
+        </record>
+
+
+
+    <record id="action_ba_synchronize" model="ir.actions.act_window">
+            <field name="name">Sincronizar</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">ba.synchronize</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+    <record id="action_ba_parametros_integracion_sia_odoo" model="ir.actions.act_window">
+            <field name="name">Parametros sincronización</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">ba.parametros.integracion.sia.odoo</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Registrar parametros a sincronizar
+                </p>
+            </field>
+        </record>
+
+
+
+    <record id="view_parametros_limitacion_tree" model="ir.ui.view">
+            <field name="name">Parametros limitación</field>
+            <field name="model">ba.paramametros.limitacion</field>
+            <field name="priority">2</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name" />
+                    <field name="date_synchronize" /> 
+                </tree>
+            </field>
+    </record>
+
+    <record id="view_parametros_limitacion_form" model="ir.ui.view">
+            <field name="name">ba.paramametros.limitacion.form</field>
+            <field name="model">ba.paramametros.limitacion</field>
+            <field name="arch" type="xml">
+              <form string="synchronizes" >
+                <sheet>
+                    <group name="information_left">
+                        <group name="information_left">
+                            <field name="name"/>                    
+                        </group>
+                        <group name="information_rithg">
+                            <field name="date_synchronize" /> 
+                        </group>
+                    </group>
+                </sheet>
+              </form>
+            </field>
+        </record>
+
+
+    <record id="action_ba_parametros_limitacion" model="ir.actions.act_window">
+            <field name="name">Parametros limitación</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">ba.paramametros.limitacion</field>
+            <field name="view_mode">tree,form</field>
+    </record>
+
+
+
+   
+
+
+    <menuitem id="synchronize_root" name="Sincronización" sequence="10" web_icon="ba_synchronize,static/description/icon.png" groups="base.group_erp_manager"/>
+
+    <menuitem id="ba_synchronize" action="ba_synchronize.action_ba_synchronize" name="Configuración de sincronización" sequence="0" parent="ba_synchronize.synchronize_root" groups="base.group_erp_manager"/>
+
+    <menuitem id="ba_parametros_integracion" action="action_ba_parametros_integracion_sia_odoo" name="Parametros de integracion" sequence="1" parent="ba_synchronize.synchronize_root" groups="base.group_erp_manager"/>
+
+    <menuitem id="ba_parametros_limitacion" action="action_ba_parametros_limitacion" name="Parametros limitación integracion" sequence="2" parent="ba_synchronize.synchronize_root" groups="base.group_erp_manager"/>
+
+    </data>
+</odoo>
+
+

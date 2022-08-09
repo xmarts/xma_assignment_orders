@@ -1,0 +1,60 @@
+<odoo>
+    <record id="hr_employee_form_inherit" model="ir.ui.view">
+        <field name="name">hr_employee.form</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Info APP" attrs="{'invisible':[('delivery','!=',True)]}">
+                    <group>
+                        <group string="Aplicacion">
+                            <field name="partner_id_delivery"/>
+                            <field name="code_delivery"/>
+                            <field name="user_login"/>
+                            <field name="password_login"/>
+                        </group>
+                    </group>
+                </page>
+                <page string="Localizacion del repartidor" attrs="{'invisible':[('delivery','!=',True)]}">
+                    <field name="tacking_delivery_ids">
+                        <tree editable="bottom">
+                            <field name="latitude"/>
+                            <field name="longitude"/>
+                            <field name="order_id"/>
+                            <button name="view_delivery_in_map" type="object" string="Ver en mapa"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+    <record id="hr_employee_view_map" model="ir.ui.view">
+        <field name="name">hr.employee.view.map</field>
+        <field name="model">hr.employee</field>
+        <field name="arch" type="xml">
+            <map res_partner="partner_id_delivery">
+            </map>
+        </field>
+    </record>
+    <record id="action_hr_employee_inherit_alianza" model="ir.actions.act_window">
+        <field name="name">Repartidores</field>
+        <field name="res_model">hr.employee</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('delivery','=',True)]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+              Crear Nuevo Repartidor
+            </p><p>
+              Crea empleados / repartidores para organizar, filtrar y rastrearlos.
+            </p>
+          </field>
+    </record>
+
+    <menuitem 
+        id="menuitem_employee_repartidor" 
+        name="Repartidor"
+        parent="point_of_sale.menu_point_of_sale"
+        action="xma_delivery_alianza.action_hr_employee_inherit_alianza" 
+        sequence="200"/>
+    
+</odoo>

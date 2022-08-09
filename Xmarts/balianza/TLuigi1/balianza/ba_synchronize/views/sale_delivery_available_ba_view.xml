@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<odoo>
+
+
+    <record id="view_sale_delivery_available_ba_tree" model="ir.ui.view">
+            <field name="name">sale.delivery.available.ba.tree</field>
+            <field name="model">sale.delivery.available.ba</field>
+            <field name="priority">2</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="pos_id"/>
+                    <field name="percentage_order" widget="percentage"/>
+                    <field name="distance" />
+                    <field name="price_delivery" />
+                </tree>
+            </field>
+    </record>
+
+
+
+    <record id="view_sale_delivery_available_ba_form" model="ir.ui.view">
+            <field name="name">sale.delivery.available.ba.form</field>
+            <field name="model">sale.delivery.available.ba</field>
+            <field name="arch" type="xml">
+              <form string="Pre orders" >
+                <header>
+                    <button name="action_create_pos_order" type="object" string="Generar pedido delivery en este punto de venta" class="btn btn-warning" />
+                </header>
+
+                <sheet>
+
+                    <group name="information_left">
+                        <group name="information_left">
+                            <field name="pos_id"/>
+                            <field name="percentage_order" widget="percentage"/>
+                        </group>
+                        <group name="information_rithg">
+                            <field name="distance" />
+                            <field name="price_delivery" />
+                        </group>
+                    </group>
+
+                    <group name="products" string="Productos">
+                        <field name="delivery_stock_line_ids" nolabel="1"  >
+                            <tree editable="bottom" decoration-danger="sub_unidad == 0" decoration-success="sub_unidad_requested == sub_unidad" decoration-warning="(sub_unidad)&lt;(sub_unidad_requested)">
+                                <field name="product_id"/>
+                                <field name="quantity_unit" />
+                                <field name="unidad_requested" />
+                                <field name="sub_unidad_requested" />
+                                <field name="unidad" />
+                                <field name="sub_unidad" />
+                                <field name="delivery_stock_id" invisible="1" />
+                            </tree>
+                        </field>
+                    </group>
+                </sheet>
+              </form>
+            </field>
+        </record>
+
+
+
+    <record id="action_sale_delivery_available_ba" model="ir.actions.act_window">
+            <field name="name">Asignación pre-pedido</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.delivery.available.ba</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+</odoo>
+
+

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="Orderline" t-inherit="point_of_sale.Orderline" t-inherit-mode="extension" owl="1">
+        <xpath expr="//ul[@class='info-list']/t/li[@class='info']" position="replace">
+            <li class="info">
+                <t t-if="props.line.get_unit_caja() and props.line.get_count_product_x_caja() > 1">
+                    <em>
+                        <t t-esc="props.line.get_qty_caja_str()" />
+                    </em>
+                    <span> </span>
+                    <t t-esc="props.line.get_unit_caja().name" />
+                        =
+                    <em>
+                        <t t-esc="props.line.get_total_quantity_x_cajas() + props.line.get_quantity()" />
+                    </em>
+                    <span> </span><t t-esc="props.line.get_unit().name" /> en Total
+                    <br/>
+                </t>
+                <em>
+                    <t t-esc="props.line.get_quantity_str()" />
+                </em>
+                <span> </span><t t-esc="props.line.get_unit().name" /> <t t-if="!props.line.get_unit_caja() and props.line.get_count_product_x_caja() > 1">en Total</t>
+                <t t-if="props.line.get_unit_caja() and props.line.get_count_product_x_caja() > 1">
+                    <span class="price">
+                        <b>
+                            Contenido <t t-esc="props.line.get_unit_caja().name" />: <t t-esc="props.line.get_count_product_x_caja()" /> <t t-esc="props.line.get_unit().name" />
+                        </b>
+                    </span>
+                </t>
+            </li>
+        </xpath>
+    </t>
+</templates>
+

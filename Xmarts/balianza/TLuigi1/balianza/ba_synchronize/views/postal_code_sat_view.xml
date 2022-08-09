@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+
+    <record id="view_postal_code_sat_tree" model="ir.ui.view">
+            <field name="name">ba.postal.code.sat</field>
+            <field name="model">postal.code.sat</field>
+            <field name="priority">2</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="zipcode" />
+                    <field name="country_id" />
+                    <field name="state_id" />
+                    <field name="city_id" />
+                    <field name="colony_sat_id" />
+                </tree>
+            </field>
+    </record>
+
+
+    <record id="view_postal_code_sat_form" model="ir.ui.view">
+            <field name="name">ba.postal.code.sat.form</field>
+            <field name="model">postal.code.sat</field>
+            <field name="arch" type="xml">
+              <form string="postal_code_sat" >
+                <sheet>
+                    <group name="information_left">
+                        <group name="information_left">
+                            <field name="name"/>
+                            <field name="zipcode" />
+                            <field name="colony_sat_id" />
+                        </group>
+                        <group name="information_rithg">
+                            <field name="country_id" />
+                            <field name="state_id" attrs="{'readonly':[('country_id', '=', False)]}" />
+                            <field name="city_id" attrs="{'readonly':[('state_id', '=', False)]}" />
+                        </group>
+                    </group>    
+                    
+                </sheet>
+              </form>
+            </field>
+        </record>
+
+
+
+        <record id="action_ba_postal_code_sat" model="ir.actions.act_window">
+            <field name="name">Codigos postales</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">postal.code.sat</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+    </data>
+</odoo>
+
+

@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <!--<record id="sequence_sale_order_04MY" model="ir.sequence">
+           <field name="name">04MY</field>
+           <field name="code">sale-pos.order</field>
+           <field name="active">TRUE</field>
+           <field name="suffix">-04MY</field>
+           <field name="padding">1</field>
+           <field name="number_increment">1</field>
+        </record>
+
+        <record id="sequence_sale_order_64BYQ" model="ir.sequence">
+           <field name="name">64BYQ</field>
+           <field name="code">sale-pos.order</field>
+           <field name="active">TRUE</field>
+           <field name="suffix">-64BYQ</field>
+           <field name="padding">1</field>
+           <field name="number_increment">1</field>
+        </record>
+
+        <record id="sequence_sale_order_64EAN" model="ir.sequence">
+           <field name="name">64EAN</field>
+           <field name="code">sale-pos.order</field>
+           <field name="active">TRUE</field>
+           <field name="suffix">-64EAN</field>
+           <field name="padding">1</field>
+           <field name="number_increment">1</field>
+        </record>
+
+        <record id="sequence_sale_order_64FDS" model="ir.sequence">
+           <field name="name">64FDS</field>
+           <field name="code">sale-pos.order</field>
+           <field name="active">TRUE</field>
+           <field name="suffix">-64FDS</field>
+           <field name="padding">1</field>
+           <field name="number_increment">1</field>
+        </record>
+
+        <record id="sequence_sale_order_64IMB" model="ir.sequence">
+           <field name="name">64IMB</field>
+           <field name="code">sale-pos.order</field>
+           <field name="active">TRUE</field>
+           <field name="suffix">-64IMB</field>
+           <field name="padding">1</field>
+           <field name="number_increment">1</field>
+        </record>
+
+        <record id="sequence_sale_order_64MAI" model="ir.sequence">
+           <field name="name">64MAI</field>
+           <field name="code">sale-pos.order</field>
+           <field name="active">TRUE</field>
+           <field name="suffix">-64MAI</field>
+           <field name="padding">1</field>
+           <field name="number_increment">1</field>
+        </record>
+
+        <record id="sequence_sale_order_64MY" model="ir.sequence">
+           <field name="name">64MY</field>
+           <field name="code">sale-pos.order</field>
+           <field name="active">TRUE</field>
+           <field name="suffix">-64MY</field>
+           <field name="padding">1</field>
+           <field name="number_increment">1</field>
+        </record>
+
+        <record id="sequence_sale_order_64PEV" model="ir.sequence">
+           <field name="name">64PEV</field>
+           <field name="code">sale-pos.order</field>
+           <field name="active">TRUE</field>
+           <field name="suffix">-64PEV</field>
+           <field name="padding">1</field>
+           <field name="number_increment">1</field>
+        </record>
+
+        <record id="sequence_sale_order_64PF" model="ir.sequence">
+           <field name="name">64PF</field>
+           <field name="code">sale-pos.order</field>
+           <field name="active">TRUE</field>
+           <field name="suffix">-64PF</field>
+           <field name="padding">1</field>
+           <field name="number_increment">1</field>
+        </record>
+
+        <record id="sequence_sale_order_64PFD" model="ir.sequence">
+           <field name="name">64PFD</field>
+           <field name="code">sale-pos.order</field>
+           <field name="active">TRUE</field>
+           <field name="suffix">-64PFD</field>
+           <field name="padding">1</field>
+           <field name="number_increment">1</field>
+        </record>
+
+        <record id="sequence_sale_order_64PFP" model="ir.sequence">
+           <field name="name">64PFP</field>
+           <field name="code">sale-pos.order</field>
+           <field name="active">TRUE</field>
+           <field name="suffix">-64PFP</field>
+           <field name="padding">1</field>
+           <field name="number_increment">1</field>
+        </record>
+
+        <record id="sequence_sale_order_64PMO" model="ir.sequence">
+           <field name="name">64PMO</field>
+           <field name="code">sale-pos.order</field>
+           <field name="active">TRUE</field>
+           <field name="suffix">-64PMO</field>
+           <field name="padding">1</field>
+           <field name="number_increment">1</field>
+        </record>
+
+        <record id="sequence_sale_order_64PPI" model="ir.sequence">
+           <field name="name">64PPI</field>
+           <field name="code">sale-pos.order</field>
+           <field name="active">TRUE</field>
+           <field name="suffix">-64PPI</field>
+           <field name="padding">1</field>
+           <field name="number_increment">1</field>
+        </record>
+
+        <record id="sequence_sale_order_64PRC" model="ir.sequence">
+           <field name="name">64PRC</field>
+           <field name="code">sale-pos.order</field>
+           <field name="active">TRUE</field>
+           <field name="suffix">-64PRC</field>
+           <field name="padding">1</field>
+           <field name="number_increment">1</field>
+        </record>
+
+        <record id="sequence_sale_order_64PST" model="ir.sequence">
+           <field name="name">64PST</field>
+           <field name="code">sale-pos.order</field>
+           <field name="active">TRUE</field>
+           <field name="suffix">-64PST</field>
+           <field name="padding">1</field>
+           <field name="number_increment">1</field>
+        </record>
+
+        <record id="sequence_sale_order_64PTE" model="ir.sequence">
+           <field name="name">64PTE</field>
+           <field name="code">sale-pos.order</field>
+           <field name="active">TRUE</field>
+           <field name="suffix">-64PTE</field>
+           <field name="padding">1</field>
+           <field name="number_increment">1</field>
+        </record>
+
+        <record id="sequence_sale_order_64PTR" model="ir.sequence">
+           <field name="name">64PTR</field>
+           <field name="code">sale-pos.order</field>
+           <field name="active">TRUE</field>
+           <field name="suffix">-64PTR</field>
+           <field name="padding">1</field>
+           <field name="number_increment">1</field>
+        </record>
+
+        <record id="sequence_sale_order_64PTS" model="ir.sequence">
+           <field name="name">64PTS</field>
+           <field name="code">sale-pos.order</field>
+           <field name="active">TRUE</field>
+           <field name="suffix">-64PTS</field>
+           <field name="padding">1</field>
+           <field name="number_increment">1</field>
+        </record>
+
+        <record id="sequence_sale_order_64REG" model="ir.sequence">
+           <field name="name">64REG</field>
+           <field name="code">sale-pos.order</field>
+           <field name="active">TRUE</field>
+           <field name="suffix">-64REG</field>
+           <field name="padding">1</field>
+           <field name="number_increment">1</field>
+        </record>
+
+        <record id="sequence_sale_order_64TT" model="ir.sequence">
+           <field name="name">64TT</field>
+           <field name="code">sale-pos.order</field>
+           <field name="active">TRUE</field>
+           <field name="suffix">-64TT</field>
+           <field name="padding">1</field>
+           <field name="number_increment">1</field>
+        </record>
+
+        <record id="sequence_sale_order_64VTA" model="ir.sequence">
+           <field name="name">64VTA</field>
+           <field name="code">sale-pos.order</field>
+           <field name="active">TRUE</field>
+           <field name="suffix">-64VTA</field>
+           <field name="padding">1</field>
+           <field name="number_increment">1</field>
+        </record>
+
+        <record id="sequence_sale_order_64WEB" model="ir.sequence">
+           <field name="name">64WEB</field>
+           <field name="code">sale-pos.order</field>
+           <field name="active">TRUE</field>
+           <field name="suffix">-64WEB</field>
+           <field name="padding">1</field>
+           <field name="number_increment">1</field>
+        </record>
+
+        <record id="sequence_sale_order_64WM2" model="ir.sequence">
+           <field name="name">64WM2</field>
+           <field name="code">sale-pos.order</field>
+           <field name="active">TRUE</field>
+           <field name="suffix">-64WM2</field>
+           <field name="padding">1</field>
+           <field name="number_increment">1</field>
+        </record>
+
+        <record id="sequence_sale_order_A10MA" model="ir.sequence">
+           <field name="name">A10MA</field>
+           <field name="code">sale-pos.order</field>
+           <field name="active">TRUE</field>
+           <field name="suffix">-A10MA</field>
+           <field name="padding">1</field>
+           <field name="number_increment">1</field>
+        </record>
+
+        <record id="sequence_sale_order_A10MI" model="ir.sequence">
+           <field name="name">A10MI</field>
+           <field name="code">sale-pos.order</field>
+           <field name="active">TRUE</field>
+           <field name="suffix">-A10MI</field>
+           <field name="padding">1</field>
+           <field name="number_increment">1</field>
+        </record>
+
+        <record id="sequence_sale_order_A10MY" model="ir.sequence">
+           <field name="name">A10MY</field>
+           <field name="code">sale-pos.order</field>
+           <field name="active">TRUE</field>
+           <field name="suffix">-A10MY</field>
+           <field name="padding">1</field>
+           <field name="number_increment">1</field>
+        </record>
+
+        <record id="sequence_sale_order_A10PT" model="ir.sequence">
+           <field name="name">A10PT</field>
+           <field name="code">sale-pos.order</field>
+           <field name="active">TRUE</field>
+           <field name="suffix">-A10PT</field>
+           <field name="padding">1</field>
+           <field name="number_increment">1</field>
+        </record>
+
+        <record id="sequence_sale_order_A10TT" model="ir.sequence">
+           <field name="name">A10TT</field>
+           <field name="code">sale-pos.order</field>
+           <field name="active">TRUE</field>
+           <field name="suffix">-A10TT</field>
+           <field name="padding">1</field>
+           <field name="number_increment">1</field>
+        </record> -->
+
+        <record id="ba_sale_order_form_inherit" model="ir.ui.view">
+            <field name="name">ba_sale_order_form_inherit</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+
+            <field name="order_line" position="after">
+              <button name="save_order" string="Reservar y actualizar" type="object" class="oe_highlight"/>
+
+            </field>
+            <field name="order_line" position="before">
+              <button name="save_order" string="Reservar y actualizar" type="object" class="oe_highlight"/>
+            </field>
+            
+            <xpath expr="//field[@name='order_line']/tree/field[@name='name']" position="after">
+              <field name="quantity_unit" />
+              <field name="grados_alcohol" invisible="1"/>
+              <field name="contenido" invisible="1" />
+              <field name="pricelist_id" invisible="1" />
+              <field name="pricelist_name" />
+              <field name="unidad"  />
+              <field name="sub_unidad" />
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree/field[@name='product_uom_qty']" position="replace">
+              <field name="product_uom_qty" invisible="True"/>
+              <field name="cantidad" readonly="1"/>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree/field[@name='product_uom']" position="replace">
+              <field name="unidades_sin_reserva" invisible="1"/>
+              <field name="product_uom" invisible="1"/>
+              <field name="inv_available" string="Inv.Disponible" attrs="{'column_invisible': [('parent.state', 'in', ['sale', 'done'])]}"/>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree/field[@name='tax_id']" position="replace">
+              <field name="tax_id" invisible="1"/>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree/field[@name='price_unit']" position="replace">
+              <field name="box_price" readonly="1" force_save="1" />
+              <field name="price_unit" readonly="1" force_save="1" />
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree/field[@name='price_subtotal']" position="after">
+              <field name="price_subtotal_base" readonly="1"/>
+            </xpath>
+
+            <field name="note" position = "after">
+                <field name="taxes_by_group" >
+                    <tree create="false" edit="false">
+                        <field name="name" />
+                        <field name="monto_base" />
+                        <field name="total_impuesto" />
+                    </tree>
+                </field>
+            </field>
+
+            <field name="validity_date" position="before" >
+              <field name="serie_id" options="{'no_create': True, 'no_create_edit':True}" domain="[('relation_id.model', '=','sale.order'),('company_id', '=',company_id)]" required="1"/>
+            </field>
+
+            <label for="pricelist_id" position="replace">
+              <label for="pricelist_id" string="Lista de precios" groups="product.group_product_pricelist"/>
+            </label>
+            <field name="pricelist_id" position="replace">
+                <field name="pricelist_id" readonly="1" />
+            </field>
+
+          </field>
+        </record>
+
+        <delete id="sale.menu_product_pricelist_main" model="ir.ui.menu"/>
+        <menuitem id="menu_product_pricelist_main" name="Listas de precios" parent="sale.product_menu_catalog" action="ba_synchronize.product_pricelist_action2" groups="product.group_product_pricelist" sequence="3"/>
+
+</odoo>

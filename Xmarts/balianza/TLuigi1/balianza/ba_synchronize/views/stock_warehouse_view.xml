@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+        <record id="ba_view_location_form" model="ir.ui.view">
+            <field name="name">stock.location.form</field>
+            <field name="model">stock.location</field>
+            <field name="inherit_id" ref="stock.view_location_form" />
+            <field name="arch" type="xml">
+                <field name="usage" position="replace" >
+                    <field name="usage" string="Tipo de uso almacen"/>
+                </field>
+                <group name="additional_info" position="after">
+
+                    <group>
+                    <field name="location_position_id">
+                        <tree editable="bottom">
+                            <field name="name"/>
+                            <field name="sub_positions_ids" widget="many2many_tags" />
+                            <field name="location_related" invisible ="1"/>
+                        </tree>
+
+                   </field>
+               </group>
+                    <!--<field name="subposition_id" domain="[('position_id', '=', position_id)]" attrs="{'readonly': [('position_id', '=', False)]}"/>
+                    <field name="sub_positions_ids" readonly="1"/>-->
+                </group>
+                <label for="name" position="replace" >
+                <label string="Nombre del Almacen" for="name" />
+                </label>
+ 
+                <label for="location_id" position="replace" >
+                <label string="Almacen razón social padre" for="location_id" />
+                </label>
+                
+            </field>
+        </record>
+
+        <record id="ba_view_location_tree" model="ir.ui.view">
+            <field name="name">stock.location.tree</field>
+            <field name="model">stock.location</field>
+            <field name="inherit_id" ref="stock.view_location_tree2" />
+            <field name="arch" type="xml">
+                <field name="complete_name" position="replace" >
+                    <field name="complete_name" string="Almacenes"/>
+                </field>
+
+                <field name="usage" position="replace" >
+                    <field name="usage" string="Tipo de uso almacen"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="ba_view_warehouse_tree" model="ir.ui.view">
+            <field name="name">stock.warehouse.tree</field>
+            <field name="model">stock.warehouse</field>
+            <field name="inherit_id" ref="stock.view_warehouse_tree" />
+            <field name="arch" type="xml">
+                <field name="lot_stock_id" position="replace" >
+                    <field name="lot_stock_id" invisible="1"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="action_location_form" model="ir.actions.act_window">
+        <field name="name">Almacenes</field>
+        <field name="res_model">stock.location</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="stock.view_location_tree2"/>
+        <field name="search_view_id" ref="stock.view_location_search"/>
+        <field name="context">{'search_default_in_location':1}</field>
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+            Add a new location
+          </p><p>
+            Define your locations to reflect your warehouse structure and
+            organization. Odoo is able to manage physical locations
+            (warehouses, shelves, bin, etc), partner locations (customers,
+            vendors) and virtual locations which are the counterpart of
+            the stock operations like the manufacturing orders
+            consumptions, inventories, etc.
+          </p><p>
+            Every stock operation in Odoo moves the products from one
+            location to another one.  For instance, if you receive products
+            from a vendor, Odoo will move products from the Vendor
+            location to the Stock location. Each report can be performed on
+            physical, partner or virtual locations.
+          </p>
+        </field>
+    </record>
+
+        <record id="action_warehouse_form" model="ir.actions.act_window">
+            <field name="name">Almacen por razón social</field>
+            <field name="res_model">stock.warehouse</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_id" ref="stock.view_warehouse_tree"/>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Define a new warehouse
+              </p>
+            </field>
+        </record>
+
+        <delete id="stock.menu_action_warehouse_form" model="ir.ui.menu"/>
+
+        <delete id="stock.menu_action_location_form" model="ir.ui.menu"/>
+
+
+        <menuitem action="action_warehouse_form" id="ba_menu_action_warehouse_form"
+            parent="stock.menu_warehouse_config" name="Almacen por razón social" sequence="0"/>
+
+        <menuitem action="action_location_form" id="ba_menu_action_location_form"
+        parent="stock.menu_warehouse_config" sequence="1" name="Almacenes" groups="stock.group_stock_multi_locations"/>
+
+
+</odoo>

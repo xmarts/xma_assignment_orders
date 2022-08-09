@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<record id="action_ba_sub_type_product" model="ir.actions.act_window">
+            <field name="name">Subtipo de producto</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">ba.sub.type.product</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+    <record id="product_product_tree_view_ba" model="ir.ui.view" >
+        <field name="name">product.product.tree.gm</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_product_tree_view" />
+        <field name="arch" type="xml">
+            <field name="default_code" position="replace"> 
+            </field>
+            <field name="name" position="after">
+                <field name="grados_alcohol" />
+                <field name="contenido" />
+                <field name="unit_id" />
+                <field name="quantity_uom" string ="Cantidad por empaque" />
+            </field>
+            <field name="virtual_available" position="after" >
+                <field name="packing_quantity" />
+                <field name="packing_unit_id" />
+                <field name="quantity_unit" />
+                <field name="unit_id" />
+            </field>
+
+        </field>
+    </record>
+    
+    <record id="view_product_normal_template_ba" model="ir.ui.view" >
+        <field name="name">product.product.ba</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view" />
+        <field name="arch" type="xml">
+            <field name="barcode" position="replace" >
+                <field name="barcode" invisible="1" />
+            </field>
+
+        </field>
+    </record>
+
+    <record id="view_product_template_only_form_ba" model="ir.ui.view" >
+        <field name="name">product.template.ba</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view" />
+        <field name="arch" type="xml">
+            <field name="barcode" position="replace" >
+                <field name="barcode" invisible="1" />
+            </field>
+
+        </field>
+    </record>
+
+    <record id="view_product_template_ba" model="ir.ui.view" >
+        <field name="name">product.template.ba</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view" />
+        <field name="arch" type="xml">
+            <field name="type" position="after">
+                <field name="sub_type" />
+            </field>
+
+            <field name="uom_id" position="replace">
+            </field>
+            <field name="taxes_id" position="after">
+                <field name="costing_method" string="Costo en base a"/>
+            </field>
+            <xpath expr="//label[@for='weight']" position="before">
+                <field name="grados_alcohol" required="1"/>
+                <label for="contenido"/>
+                <div name="Cotenido">
+                    <field name="contenido" required="1" class="oe_inline"/>
+                    <field name="unit_id" class="oe_inline"/>
+                </div>
+                <field name="height" />
+                <field name="width" />
+                <field name="length" />
+            </xpath>
+            <field name="uom_po_id" position="after">
+                
+                <field name="cantidades_reservadas_total" readonly="1" />
+                <field name="cantidades_reservadas" readonly="1" />
+                <field  name="reserved_related_ids" string="Pedidos sin confirmar con cantidad reservada">
+                    <tree create="false" edit="false">
+                        <field name="order_id" string="Pedido" />
+                        <field name="cantidad" string="Cantidad" />
+                    </tree>
+                </field>
+            </field>
+            
+            <field name="unspsc_code_id" position="after">
+                <field name="uom_id" />
+                <field name="sub_type_uom" />
+                <field name="quantity_uom" required="1" />    
+                <field name="displacement_level_id" />
+            </field>
+            <page name="inventory" position="after" >
+                <page name="barcodes" string="Codigos barras" >
+                    <field name="barcodes_related_ids" >
+                        <tree editable="buttom" >
+                            <field name="name" />
+                            <field name="unit_of_measure_id"/>
+                            <field name="product_id" invisible="1" />
+                        </tree>
+                    </field>
+                </page>
+            </page>
+
+        </field>
+    </record>
+
+    <record id="view_product_template_tree_ba" model="ir.ui.view" >
+        <field name="name">product.template.tree.ba</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_tree_view" />
+        <field name="arch" type="xml">
+            <field name="qty_available" position="replace">
+                
+                <field name="qty_available" string="Unidades en almacenes" />
+            </field>
+            <field name="uom_id" position="after">
+                <field name="packaging_content" />
+                <field name="packing_quantity" />
+                <field name="packing_unit_id" />
+                <field name="quantity_unit" />
+                <field name="unit_id" />
+            </field>
+
+        </field>
+    </record>
+
+    <record id="view_product_template_form_gm" model="ir.ui.view" >
+        <field name="name">product.template.tree.gm</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="stock.product_template_form_view_procurement_button" />
+        <field name="arch" type="xml">
+
+            <button name="action_open_quants" position="replace" >
+                <button class="oe_stat_button"
+                               name="action_open_quants"
+                               icon="fa-cubes"
+                               type="object" attrs="{'invisible':[('type', '!=', 'product')]}">
+                               <div class="o_field_widget o_stat_info">
+                                    <span class="o_stat_value">
+                                        <field name="qty_available" widget="statinfo" nolabel="1" class="mr4"/>
+                                        <field name="uom_name"/>
+                                    </span>
+                                    <span class="o_stat_text">En almacenes</span>
+                               </div>
+                        </button>            
+            </button>
+        </field>
+    </record>
+
+
+    <menuitem id="ba_sub_type_products" action="ba_synchronize.action_ba_sub_type_product" name="Subtipo de producto" sequence="0" parent="stock.menu_product_in_config_stock"/>
+
+</odoo>

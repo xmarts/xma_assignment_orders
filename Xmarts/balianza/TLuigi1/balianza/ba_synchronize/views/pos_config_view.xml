@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="res_config_settings_view_form_inherit" model="ir.ui.view" >
+        <field name="name">res.config.settings.view.form</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="point_of_sale.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('settings')]" position="inside">
+                <div class="app_settings_block" data-string="" string="" data-key="point_of_sale" groups="point_of_sale.group_pos_manager">
+                    <h2>Asignacion de pedidos</h2>
+                    <div class="row mt16 o_settings_container">
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_right_pane">
+                                <label for="pdv_client_radio"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <field name="pdv_client_radio"/>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_right_pane">
+                                <label for="pdv_delivery_radio"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <field name="pdv_delivery_radio"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="ba_pos_config_view" model="ir.ui.view" >
+        <field name="name">pos.config</field>
+        <field name="model">pos.config</field>
+        <field name="inherit_id" ref="point_of_sale.pos_config_view_form" />
+        <field name="arch" type="xml">
+            <div id="title" position="before">
+                <label for="code" class="oe_edit_only"/>
+                <h1><field name="code" required="1"/></h1>
+                <label for="liga" class="oe_edit_only"/>
+                <h1><field name="liga" /></h1>
+            </div>
+            <div id="company" position="after">
+                <label for="status"/>
+                <div><field name="status"/></div>
+                <label for="database"/>
+                <div><field name="database"/></div>
+            </div> 
+        </field>
+  </record>
+
+  <record id="ba_view_pos_config_tree" model="ir.ui.view">
+        <field name="name">pos.config</field>
+        <field name="model">pos.config</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_config_tree" />
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="code" />
+                <field name="liga" />
+                <field name="status" />
+            </field>
+        </field>
+  </record>
+
+  <record id="ba_view_pos_config_kanban" model="ir.ui.view">
+        <field name="name">pos.config</field>
+        <field name="model">pos.config</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_config_kanban" />
+        <field name="arch" type="xml">
+            <field name="name" position="before">
+                <field name="code" />
+            </field>
+            <xpath expr="//div[@class='o_kanban_card_header']" position="inside">
+                <div class="o_primary">
+                    <t t-esc="record.code.value"/>
+                </div>
+            </xpath>
+        </field>
+  </record>
+
+
+    <record id="point_of_sale.action_pos_config_kanban" model="ir.actions.act_window">
+
+        <field name='domain'>[('status', '=', True),('liga', '!=', '')]</field>
+
+    </record>
+
+
+</odoo>

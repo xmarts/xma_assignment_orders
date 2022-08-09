@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="inherit_res_partner_form_view" model="ir.ui.view">
+        <field name="name">inherit.res.partner.form.view</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='type']" position="before">
+                <field name="is_pos" attrs="{'invisible': [('company_type', '=', 'person')]}"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="inherit_res_partner_filter_view" model="ir.ui.view">
+        <field name="name">inherit.res.partner.filter.view</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_res_partner_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search//group" position="inside">
+                <filter string="Es PDV" name="is_pos" context="{'group_by':'is_pos'}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

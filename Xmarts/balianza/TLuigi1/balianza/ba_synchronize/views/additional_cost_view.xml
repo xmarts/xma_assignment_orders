@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.ui.view" id="view_stock_landed_cost_gm">
+        <field name="name">view.stock.landed.cost.form.gm</field>
+        <field name="model">stock.landed.cost</field>
+        <field name="inherit_id" ref="stock_landed_costs.view_stock_landed_cost_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='date']" position="after">
+                <field name="purchase_related_id" />
+            </xpath>
+
+            <field name="picking_ids" position="replace">
+                <field name="picking_ids" widget="many2many_tags" options="{'no_create_edit': True}" domain="[('state', '!=', 'cancel')]" attrs="{'invisible': [('target_model', '!=', 'picking')]}"/>
+            </field>
+        </field>
+    </record>
+</odoo>

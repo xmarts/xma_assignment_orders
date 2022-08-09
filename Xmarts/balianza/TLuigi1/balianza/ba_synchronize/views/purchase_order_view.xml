@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+        <record id="ba_purchase_order_form_inherit" model="ir.ui.view">
+            <field name="name">ba_purchase_order_form_inherit</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+            <header position="inside">
+                <button name="action_create_expense" type="object" string="Crear gastos" class="btn-primary" states="purchase"/>
+            </header>
+            <xpath expr="//field[@name='order_line']/tree/field[@name='name']" position="after">
+              <field name="quantity_unit" readonly="1" />
+              <field name="grados_alcohol" readonly="1" />
+              <field name="contenido" readonly="1" />
+              <field name="unidad" />
+              <field name="sub_unidad" />
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree/field[@name='product_qty']" position="replace">
+              <field name="product_qty" invisible="True"/>
+              <field name="cantidad" readonly="1"/>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree/field[@name='product_uom']" position="replace">
+              <field name="product_uom"  readonly="1"/>
+              <field name="unidad_sc" />
+              <field name="sub_unidad_sc" />
+              <field name="qty_received_unidad_sc"  attrs="{'column_invisible': [('parent.state', 'not in', ('purchase', 'done'))], 'readonly': [('qty_received_method', '!=', 'manual')]}" optional="show" />
+                <field name="qty_received_sub_unidad_sc"  attrs="{'column_invisible': [('parent.state', 'not in', ('purchase', 'done'))], 'readonly': [('qty_received_method', '!=', 'manual')]}" optional="show" />
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree/field[@name='taxes_id']" position="replace">
+              <field name="taxes_id" readonly="1"/>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree/field[@name='price_subtotal']" position="after">
+              <field name="price_subtotal_base" readonly="1"/>
+            </xpath>
+            <field name="notes" position = "after">
+                <field name="taxes_by_group" >
+                    <tree create="false" edit="false">
+                        <field name="name" />
+                        <field name="monto_base" />
+                        <field name="total_impuesto" />
+                    </tree>
+                </field>
+            </field>
+            <page name="purchase_delivery_invoice" position="after">
+                <page name="expenses_purchase" string="Gastos relacionados" states="purchase">
+                    <field name="landed_cost_related" >
+                        <tree create="false">
+                            <field name="name" />
+                            <field name="date" />
+                            <field name="picking_ids" />
+                            <field name="purchase_related_id" />
+                            <field name="vendor_bill_id" />
+                            <field name="amount_total" sum="Total gastos" />
+                            <field name="state" string="Estatus"/>
+                        </tree>
+                    </field>
+                    <group string="Descripción de gastos">
+                        <field name="landed_cost_line_related" >
+                            <tree create="false">
+                                <field name="cost_id" string="Documento"/>
+                                <field name="product_id" />
+                                <field name="price_unit" string="Precio gasto" />
+                                <field name="split_method" />
+                                <field name="purchase_related_id" />
+                            </tree>
+                        </field>
+                    </group>
+                </page>
+                <page name="transfers_purchase" string="Movimientos relacionados" states="purchase">
+                    <field name="group_id" string="Enlace:" readonly="True"/>
+                    <field name="pickings_ids" readonly="True"/>
+                </page>
+            </page>
+
+            <field name="qty_received" position="after" >
+                <field name="qty_received_unidad"  attrs="{'column_invisible': [('parent.state', 'not in', ('purchase', 'done'))], 'readonly': [('qty_received_method', '!=', 'manual')]}" optional="show" />
+                <field name="qty_received_sub_unidad"  attrs="{'column_invisible': [('parent.state', 'not in', ('purchase', 'done'))], 'readonly': [('qty_received_method', '!=', 'manual')]}" optional="show" />
+            </field>
+            <field name="price_unit" position="before">
+                <field name="box_price" />
+            </field>
+          </field>
+        </record>
+
+
+</odoo>

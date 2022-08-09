@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="NumpadWidget" t-inherit="point_of_sale.NumpadWidget" t-inherit-mode="extension" owl="1">
+        <xpath expr="//div[@class='numpad']/button[4]" position="replace">
+            <button class="mode-button" t-att-class="{'selected-mode': props.activeMode === 'quantity'}"
+                t-on-click="changeMode('quantity')">Unit</button>
+        </xpath>
+        <xpath expr="//div[@class='numpad']/button[8]" position="replace">
+            <button class="mode-button" t-att-class="{'selected-mode': props.activeMode === 'quantity_caja'}" t-on-click="changeMode('quantity_caja')">Cant Caj.</button>
+        </xpath>
+        <xpath expr="//div[@class='numpad']/button[12]" position="replace">
+            <button class="mode-button" t-on-click="clicked_add_tipo_compra()">
+                Tipo Cmpr.
+            </button>
+        </xpath>
+    </t>
+</templates>
+

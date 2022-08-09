@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="ProductCategoryWidget" owl="1"> 
+        <div class="control-button category_view"> 
+            Cajas
+        </div>
+    </t>
+
+    <t t-name="CategoryScreen" owl="1">
+        <div class="clientlist-screen screen">
+            <div class="screen-content">
+                <div class="top-content">
+                    <div class="button back" t-on-click="back">
+                        Back
+                    </div>
+                </div>
+                <section class="full-content">
+                    <div class="client-window">
+                        <section class="subwindow list">
+                            <div class="subwindow-container">
+                                <div class="subwindow-container-fix scrollable-y">
+                                    <table class="client-list">
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Costing Method</th>
+                                                <th>Inventory Valuation</th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </t>
+</templates>

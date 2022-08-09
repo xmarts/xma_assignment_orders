@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+
+  <record id="view_ir_seuqnce_ba" model="ir.ui.view" >
+        <field name="name">ir.sequence.ba</field>
+        <field name="model">ir.sequence</field>
+        <field name="inherit_id" ref="base.sequence_view" />
+        <field name="arch" type="xml">
+            <field name="name" position="replace">
+                <field name="name" invisible="1" />
+                <field name="description" string="Descripción" required="1"/>
+                <field name="serie" required="True" />
+                <field name="relation_id" required="1"/>
+                <field name="ptv_related_id" required="1" />
+            </field>
+        </field>
+  </record>
+  
+</odoo>

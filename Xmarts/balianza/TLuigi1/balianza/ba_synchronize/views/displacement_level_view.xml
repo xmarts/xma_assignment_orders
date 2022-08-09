@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+
+    <record id="view_displacement_level_tree" model="ir.ui.view">
+            <field name="name">displacement_level</field>
+            <field name="model">displacement.level</field>
+            <field name="priority">2</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="level" />
+                    <field name="percent_from" />
+                    <field name="percent_to" />
+                </tree>
+            </field>
+    </record>
+
+    <record id="view_displacement_level_form" model="ir.ui.view">
+            <field name="name">displacement.level.form</field>
+            <field name="model">displacement.level</field>
+            <field name="arch" type="xml">
+              <form string="Codigos de barras" >
+                <sheet>
+                    <group name="information_left">
+                        <group name="information_left">
+                            <field name="name"/>
+                            <field name="level" />
+                                  
+                        </group>
+                        <group name="information_rithg">
+                            <field name="percent_from" />
+                            <field name="percent_to" />  
+                        </group>
+                    </group>        
+                </sheet>
+              </form>
+            </field>
+        </record>
+
+
+
+    <record id="action_ba_displacement_level" model="ir.actions.act_window">
+            <field name="name">Clasificación en base a desplazamiento</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">displacement.level</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+   
+
+    <menuitem id="ba_displacement_level" action="ba_synchronize.action_ba_displacement_level" name="Clasificación productos" sequence="3" parent="sale.product_menu_catalog" groups="base.group_erp_manager"/>
+
+
+    </data>
+</odoo>
+
+

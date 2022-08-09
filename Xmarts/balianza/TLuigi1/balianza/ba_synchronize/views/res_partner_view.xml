@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_res_partner_address_ba" model="ir.ui.view" >
+        <field name="name">res.partner.view</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="l10n_mx_edi.mx_partner_address_form" />
+        <field name="arch" type="xml">
+            <field name="zip" position="replace">
+                <field name="zip" invisible ="1"/>
+            </field>
+            <field name="l10n_mx_edi_colony" position="replace">
+                <field name="l10n_mx_edi_colony" invisible="1" />
+                <field name="colony_id" required="1" placeholder="Colonia"/>
+                <field name="zip"  required="1" placeholder="C.P." />
+            </field>
+            <field name="street2" position="replace">
+                <field name="street2" placeholder="Entre calles..."  />
+            </field>
+            <field name="city" position="replace">
+                <field name="city" invisible="1" />
+                <field name="city_id" required="1" placeholder="Ciudad o municipio" />
+            </field>
+
+            <field name="state_id" position="replace">
+                <field name="state_id" required="1" placeholder="Estado" />
+            </field>
+
+            <field name="country_id" position="replace">
+                <field name="country_id" required="1" placeholder="País" />
+            </field>
+
+            <field name="street_name" position="replace">
+                <field name="street_name" required="1" placeholder="Nombre de la calle" />
+            </field>
+
+            
+
+        </field>
+    </record>
+
+	<record id="view_res_partner_ba" model="ir.ui.view" >
+        <field name="name">res.partner.view</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form" />
+        <field name="arch" type="xml">
+            <field name="ref" position="after">
+                <field name="client_code" />
+                <field name="from_sia" />
+                <field name="is_employee" />
+                <field name="employee_code" attrs="{'invisible': [('is_employee', '=', False)]}" />
+                <field name="department_id" attrs="{'invisible': [('is_employee', '=', False)]}" />
+            </field>
+            <field name="vat" position="replace">
+                <field name="vat" placeholder="RFC" attrs="{'readonly': [('parent_id','!=',False)]}" required="1"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_res_partner_product_ba" model="ir.ui.view" >
+        <field name="name">res.partner.view</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="product.view_partner_property_form" />
+        <field name="arch" type="xml">
+            <field name="property_product_pricelist" position="replace">
+                <field name="property_product_pricelist" string="Lista de precios" />
+                
+            </field>
+        </field>
+    </record>
+
+
+    <record id="sequence_res_partner" model="ir.sequence">
+           <field name="name">Codigo cliente</field>
+           <field name="code">res.partner</field>
+           <field name="active">TRUE</field>
+           <field name="prefix">C</field>
+           <field name="padding">5</field>
+           <field name="number_increment">1</field>
+        </record>
+
+    <record id="view_res_city_ba" model="ir.ui.view" >
+        <field name="name">res.city.view</field>
+        <field name="model">res.city</field>
+        <field name="inherit_id" ref="base_address_city.view_city_tree" />
+        <field name="arch" type="xml">
+            <field name="zipcode" position="replace">
+                <field name="zipcode" invisible="1" />
+            </field>
+        </field>
+    </record>
+
+
+    <delete id="contacts.menu_country_state_partner" model="ir.ui.menu"/>
+
+    <menuitem id="menu_country_state_partner_ba" name="Estados"
+        action="base.action_country_state"
+        parent="contacts.menu_localisation"
+        sequence="2"/>
+
+    <menuitem id="menu_country_partner_ba" name="Municipios"
+        action="base_address_city.action_res_city_tree"
+        parent="contacts.menu_localisation"
+        sequence="2"/>
+
+    <menuitem id="menu_postal_code_partner_ba" name="Codigos postales"
+        action="ba_synchronize.action_ba_postal_code"
+        parent="contacts.menu_localisation"
+        sequence="2"/>
+
+    <menuitem id="menu_postal_code_sat_partner_ba" name="Codigos postales SAT"
+        action="ba_synchronize.action_ba_postal_code_sat"
+        parent="contacts.menu_localisation"
+        sequence="2"/>
+    <menuitem id="menu_cities_sat_partner_ba" name="Municipios SAT"
+        action="ba_synchronize.action_ba_res_city_sat"
+        parent="contacts.menu_localisation"
+        sequence="2"/>
+
+    <menuitem id="menu_colonies_sat_partner_ba" name="Colonias SAT"
+        action="ba_synchronize.action_ba_colonies_sat"
+        parent="contacts.menu_localisation"
+        sequence="2"/>
+
+</odoo>

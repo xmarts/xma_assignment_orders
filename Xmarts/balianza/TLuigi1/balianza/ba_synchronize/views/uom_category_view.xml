@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<record id="view_uom_category_ba" model="ir.ui.view" >
+        <field name="name">uom.category.ba</field>
+        <field name="model">uom.category</field>
+        <field name="inherit_id" ref="uom.product_uom_categ_tree_view" />
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="quantity" />
+            </field>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+
+    <record id="view_params_serie_point_sale_warehouse_tree" model="ir.ui.view">
+            <field name="name">Parametros almacenes permitidos por punto de venta</field>
+            <field name="model">params.serie.point.sale.warehouse</field>
+            <field name="priority">2</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name" />
+                    <field name="company_id" groups="base.group_multi_company" /> 
+                    <field name="serie_id" />
+                    <field name="point_sale_id" />
+                    <field name="warehouse_ids" />
+                    <field name="number_warehouse_actives" />
+                </tree>
+            </field>
+    </record>
+
+    <record id="view_params_serie_point_sale_warehouse_form" model="ir.ui.view">
+            <field name="name">params.serie.point.sale.warehouse.form</field>
+            <field name="model">params.serie.point.sale.warehouse</field>
+            <field name="arch" type="xml">
+              <form string="Parametros" >
+                <sheet>
+                    <group name="information_left">
+                        <group name="information_left">
+                            <field name="name" invisible="1"/>
+                            <field name="serie_id" />
+                            <field name="point_sale_id" />
+                        </group>
+                        <group name="information_rithg">
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                    </group>
+                    <group name="warehouses" string="Almacenes relacionados">
+                        <field name="warehouse_ids" nolabel="1">
+                            <tree editable="bottom" default_order="sequence">
+                                <field name="params_id" invisible="1"/>
+                                <field name="warehouse_id" />
+                                <field name="warehouse_code" />
+                                <field name="sequence" />
+                                <field name="status" />
+                            </tree>
+                        </field>
+                    </group>                    
+                </sheet>
+              </form>
+            </field>
+        </record>
+
+
+    <record id="action_params_serie_point_sale_warehouse_view" model="ir.actions.act_window">
+            <field name="name">Parametros Almacenes permitidos en puntos de venta</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">params.serie.point.sale.warehouse</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+
+    <menuitem id="ba_params_serie_point_sale_warehouse" action="action_params_serie_point_sale_warehouse_view" name="Parametros relación almacenes y puntos de venta"  parent="stock.menu_warehouse_config" sequence="3" groups="stock.group_stock_multi_locations"/>
+
+
+    </data>
+</odoo>
+
+
